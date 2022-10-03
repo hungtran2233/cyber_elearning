@@ -1,0 +1,146 @@
+@import "antd/dist/antd.css";
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap");
+body {
+  box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+.container {
+  max-width: 115.2rem;
+  padding: auto 3.2rem;
+  margin: 0 auto;
+}
+
+.Header {
+  background-color: #fff;
+  box-shadow: rgba(50, 50, 93, 0.25) 10px -9px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.Header .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 0;
+}
+.Header .navbar .left {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+.Header .navbar .left .title {
+  font-size: 60px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  background: -webkit-linear-gradient(rgb(95, 93, 93), rgb(234, 241, 19));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.Header .navbar .left .logo img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+.Header .navbar .middle {
+  width: 40%;
+  border: 1px solid blue;
+}
+.Header .navbar .language {
+  width: 15%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.Header .navbar .language .vi-lan,
+.Header .navbar .language .en-lan {
+  width: 45%;
+  height: 30px;
+  border: 1px solid rgb(208, 207, 207);
+  border-radius: 5px;
+  text-align: center;
+  line-height: 30px;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.Header .navbar .language .vi-lan:hover,
+.Header .navbar .language .en-lan:hover {
+  background: #d8d7d7;
+}
+.Header .navbar .language .vi-lan img,
+.Header .navbar .language .en-lan img {
+  width: 25px;
+  height: 15px;
+  object-fit: cover;
+}
+.Header .navbar .language .vi-lan span,
+.Header .navbar .language .en-lan span {
+  margin-left: 2px;
+  line-height: 15px;
+}
+.Header .navbar .right {
+  display: flex;
+  justify-content: end;
+  font-size: 1.5rem;
+  width: 40%;
+  border-bottom: none;
+  color: #525252;
+  font-weight: 600;
+}
+.Header .navbar .right .nav-sub {
+  margin-left: 20px;
+}
+
+.CourseCategory {
+  padding: 30px 0;
+  background: whitesmoke;
+}
+.CourseCategory h1 {
+  text-align: center;
+  font-weight: bold;
+}
+.CourseCategory .category-list {
+  display: flex;
+}
+.CourseCategory .category-list .card-content {
+  width: 15%;
+  padding: 10px;
+}
+.CourseCategory .category-list .card-content .card-custom {
+  text-align: center;
+  height: 100px;
+  border-radius: 10px;
+}
+.CourseCategory .category-list .card-content .card-custom .ant-card-body {
+  padding: 20px 0;
+}
+.CourseCategory .category-list .card-content .card-custom .logo span {
+  font-size: 30px;
+  color: grey;
+}
+.CourseCategory .category-list .card-content .title {
+  font-size: 14px;
+  font-weight: bold;
+  color: grey;
+  margin-top: 10px;
+}/*# sourceMappingURL=index.css.map */

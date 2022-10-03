@@ -1,0 +1,62 @@
+.CourseCategory {
+	padding: 30px 0;
+	background: $bg-gray-1;
+	h1 {
+		text-align: center;
+		font-weight: bold;
+	}
+
+	.category-list {
+		display: flex;
+
+		.card-content {
+			width: 15%;
+			padding: 10px;
+
+			.card-custom {
+				text-align: center;
+				height: 100px;
+				border-radius: 10px;
+				.ant-card-body {
+					padding: 20px 0;
+				}
+
+				.logo {
+					span {
+						font-size: 30px;
+						color: grey;
+					}
+				}
+			}
+			.title {
+				font-size: 14px;
+				font-weight: bold;
+				color: grey;
+				margin-top: 10px;
+			}
+		}
+	}
+
+	///////
+	.normal-list {
+		display: flex;
+		gap: 20px;
+
+		.normal-item {
+			width: 300px;
+			.normal-card {
+				border-radius: 5px;
+
+				.card-img {
+					img {
+						width: 100px;
+						height: 100px;
+					}
+				}
+			}
+			.ant-card-body {
+				padding: 0;
+			}
+		}
+	}
+}
