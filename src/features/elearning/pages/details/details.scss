@@ -1,0 +1,53 @@
+.details {
+  .header__details {
+    height: max-content;
+    padding: 16px 0px 32px 112px;
+    position: relative;
+    background: linear-gradient(
+      191deg,
+      rgba(255, 192, 67, 0) 5.02%,
+      rgba(255, 192, 67, 0.5) 94.1%
+    );
+    margin-top: -7px;
+    min-height: 385px;
+  }
+  .body__details {
+    .info__course {
+      cursor: auto;
+      .right__course {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        z-index: 1000;
+        .card__payment {
+          height: fit-content;
+          z-index: 11;
+          position: fixed;
+          border-radius: 20px;
+          width: 350px;
+          background: #ffffff;
+
+          .btn__add {
+            color: #000000;
+            border: 1px solid #000000;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 100px;
+            width: 200px;
+            height: 40px;
+          }
+          .btn__payment {
+            background-color: #fccf00;
+            color: #000000;
+            border: 1px solid #000000;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 100px;
+            width: 200px;
+            height: 40px;
+          }
+        }
+      }
+    }
+  }
+}
