@@ -12,6 +12,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Slider from "react-slick";
 import { fetchCourseAction } from "../../ultis/homeAction";
 import CourseItem from "./CourseItem";
@@ -22,8 +23,11 @@ function CourseCategory(props) {
 	const allCourseList = props.allCourseList;
 	const dispatch = useDispatch();
 
-	// Get course list from redux
-	// const courseList = useSelector((state) => state.eLearningHome.courseList);
+	// switch page
+	const history = useHistory();
+	const goToDetail = (id, slug) => {
+		history.push("/detail/" + id);
+	};
 
 	// Get course
 	const [selectedCourseList, setSelectedCourseList] = useState(allCourseList);
@@ -87,23 +91,13 @@ function CourseCategory(props) {
 	// render normal
 	const renderNormal = () => {
 		return selectedCourseList?.map((item) => {
-			return (
-				<div key={item.maKhoaHoc} className="normal-item">
-					<Card hoverable className="normal-card">
-						<div className="card-img">
-							<img src={item.hinhAnh} alt="" />
-						</div>
-						<p>{item.maKhoaHoc}</p>
-						<p>{item.tenKhoaHoc}</p>
-					</Card>
-				</div>
-			);
+			return <CourseItem key={item.maKhoaHoc} item={item} />;
 		});
 	};
 
 	return (
 		<div className="CourseCategory">
-			{console.log(selectedCourseList)}
+			{/* {console.log(selectedCourseList)} */}
 			<div className="container">
 				<h1>Bee Academy có hơn 100 khóa học đang chờ bạn khám phá</h1>
 				<div className="category-list">
@@ -140,7 +134,7 @@ function CourseCategory(props) {
 				<h2> {titleCourse} </h2>
 
 				{selectedCourseList.length > 4 ? (
-					renderSlider()
+					<div className="slider-list">{renderSlider()}</div>
 				) : (
 					<div className="normal-list">{renderNormal()}</div>
 				)}

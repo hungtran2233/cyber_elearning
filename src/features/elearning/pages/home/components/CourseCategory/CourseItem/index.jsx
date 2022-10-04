@@ -1,9 +1,18 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+import "./_courseItem.scss";
 
 function CourseItem(props) {
-	const { maKhoaHoc, tenKhoaHoc, hinhAnh } = props.item;
+	const { maKhoaHoc, tenKhoaHoc, hinhAnh, biDanh } = props.item;
+
+	const history = useHistory();
+	const goToDetail = () => {
+		history.push("/detail/" + maKhoaHoc + "/" + biDanh);
+	};
+
 	return (
-		<div className="course-item">
+		<div className="CourseItem" onClick={goToDetail}>
+			{/* {console.log(props.item)} */}
 			<p>{maKhoaHoc}</p>
 			<p>{tenKhoaHoc}</p>
 		</div>

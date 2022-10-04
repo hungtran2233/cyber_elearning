@@ -1,13 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Menu } from "antd";
-import { UserOutlined, CalendarOutlined, HomeOutlined, UnorderedListOutlined } from "@ant-design/icons";
+import {
+	UserOutlined,
+	CalendarOutlined,
+	HomeOutlined,
+	UnorderedListOutlined,
+} from "@ant-design/icons";
 import instance from "api/instance";
 import beeLogo from "../../../assets/icon/logo-bee.png";
 import viFlag from "../../../assets/icon/vi-flag.png";
 import enFlag from "../../../assets/icon/en-flag.png";
+import { useHistory } from "react-router-dom";
 
 const Header = () => {
 	const [current, setCurrent] = useState("");
+
+	const history = useHistory();
+	const goToHome = () => {
+		history.push("/");
+	};
 
 	const onClick = (e) => {
 		// console.log("click ", e);
@@ -66,7 +77,7 @@ const Header = () => {
 	return (
 		<Layout className="Header" style={{ display: "block" }}>
 			<div className="container">
-				<Layout.Header className="navbar">
+				<Layout.Header className="navbar" onClick={goToHome}>
 					<div className="left">
 						<div className="title">bee</div>
 						<div className="logo">

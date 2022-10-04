@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "common/components/Header";
 import Home from "features/elearning/pages/home";
+import Detail from "features/elearning/pages/detail";
 
 function App() {
 	return (
@@ -11,9 +12,7 @@ function App() {
 				<Header />
 				<Switch>
 					<Route path="/" component={Home} exact />
-					{/* <Route path='/detail' component={Detail} />
-         <Route path='/booking' component={Booking} />
-         <Route path='/payment' component={Payment} /> */}
+					<Route path="/detail/:id/:slug" component={Detail} />
 				</Switch>
 			</Router>
 		</div>

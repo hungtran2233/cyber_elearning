@@ -14,15 +14,13 @@
 			display: flex;
 			align-items: center;
 			justify-content: start;
+			cursor: pointer;
 
 			.title {
 				font-size: 60px;
 				font-weight: bold;
 				letter-spacing: 5px;
-				background: -webkit-linear-gradient(
-					rgb(95, 93, 93),
-					rgb(234, 241, 19)
-				);
+				background: -webkit-linear-gradient(rgb(95, 93, 93), rgb(234, 241, 19));
 				-webkit-background-clip: text;
 				-webkit-text-fill-color: transparent;
 			}
