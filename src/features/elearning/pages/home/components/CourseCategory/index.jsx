@@ -23,11 +23,10 @@ function CourseCategory(props) {
 	const allCourseList = props.allCourseList;
 	const dispatch = useDispatch();
 
-	// switch page
 	const history = useHistory();
-	const goToDetail = (id, slug) => {
-		history.push("/detail/" + id);
-	};
+
+	// Get course list from redux
+	// const courseList = useSelector((state) => state.eLearningHome.courseList);
 
 	// Get course
 	const [selectedCourseList, setSelectedCourseList] = useState(allCourseList);
@@ -91,7 +90,17 @@ function CourseCategory(props) {
 	// render normal
 	const renderNormal = () => {
 		return selectedCourseList?.map((item) => {
-			return <CourseItem key={item.maKhoaHoc} item={item} />;
+			return (
+				<div key={item.maKhoaHoc} className="normal-item">
+					<Card hoverable className="normal-card">
+						<div className="card-img">
+							<img src={item.hinhAnh} alt="" />
+						</div>
+						<p>{item.maKhoaHoc}</p>
+						<p>{item.tenKhoaHoc}</p>
+					</Card>
+				</div>
+			);
 		});
 	};
 
@@ -134,7 +143,7 @@ function CourseCategory(props) {
 				<h2> {titleCourse} </h2>
 
 				{selectedCourseList.length > 4 ? (
-					<div className="slider-list">{renderSlider()}</div>
+					renderSlider()
 				) : (
 					<div className="normal-list">{renderNormal()}</div>
 				)}

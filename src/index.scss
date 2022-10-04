@@ -1,9 +1,9 @@
 @import "antd/dist/antd.css";
 @import "./styles/main.scss";
 @import "./common/components/Header/header";
+@import "./styles/main.scss";
 
 // ELearningHome -> CourseCategory
 @import "./features/elearning/pages/home/components/CourseCategory/courseCategory";
 
-// ELearningDetail
-@import "./features/elearning/pages/detail/detail";
+@import "./features/elearning/pages/details/details.scss";

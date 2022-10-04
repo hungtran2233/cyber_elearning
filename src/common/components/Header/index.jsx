@@ -21,55 +21,60 @@ const Header = () => {
 	};
 
 	const onClick = (e) => {
-		// console.log("click ", e);
 		setCurrent(e.key);
+		if (e.key === "user-signin") {
+			history.push("/signin");
+		}
+		if (e.key === "user-signup") {
+			history.push("/signup");
+		}
 	};
 
 	const items = [
 		{
 			label: "Danh Mục Khóa Học",
-			key: "cat",
+			key: "cate",
 			icon: <UnorderedListOutlined />,
 			children: [
 				{
 					label: "Lập trình Backend",
-					key: "cat-child-1",
+					key: "cate-child-1",
 				},
 				{
 					label: "Thiết kế Web",
-					key: "cat-child-2",
+					key: "cate-child-2",
 				},
 				{
 					label: "Lập trình di động",
-					key: "cat-child-3",
+					key: "cate-child-3",
 				},
 				{
 					label: "Lập trình Front End",
-					key: "cat-child-4",
+					key: "cate-child-4",
 				},
 				{
 					label: "Lập trình Full Stack",
-					key: "cat-child-5",
+					key: "cate-child-5",
 				},
 				{
 					label: "Tư duy lập trình",
-					key: "cat-child-6",
+					key: "cate-child-6",
 				},
 			],
 		},
 
 		{
-			label: "Đăng Nhập",
-			key: "sub-3",
+			label: "Tài khoản",
+			key: "user",
 			icon: <UserOutlined />,
 			children: [
 				{
 					label: "Đăng Nhập",
-					key: "5",
+					key: "user-signin",
 				},
 				{
-					label: "Đăng Xuất",
-					key: "6",
+					label: "Đăng Ký",
+					key: "user-signup",
 				},
 			],
 		},
@@ -77,8 +82,8 @@ const Header = () => {
 	return (
 		<Layout className="Header" style={{ display: "block" }}>
 			<div className="container">
-				<Layout.Header className="navbar" onClick={goToHome}>
-					<div className="left">
+				<Layout.Header className="navbar">
+					<div className="left" onClick={goToHome}>
 						<div className="title">bee</div>
 						<div className="logo">
 							<img src={beeLogo} alt="" />

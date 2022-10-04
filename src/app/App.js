@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "common/components/Header";
 import Home from "features/elearning/pages/home";
-import Detail from "features/elearning/pages/detail";
+import Detail from "features/elearning/pages/details";
+import SignIn from "features/authentication/SignIn";
+import SignUp from "features/authentication/SignUp";
 
 function App() {
 	return (
@@ -12,7 +14,9 @@ function App() {
 				<Header />
 				<Switch>
 					<Route path="/" component={Home} exact />
-					<Route path="/detail/:id/:slug" component={Detail} />
+					<Route path="/details" component={Detail} exact />
+					<Route path="/signin" component={SignIn} />
+					<Route path="/signup" component={SignUp} />
 				</Switch>
 			</Router>
 		</div>
