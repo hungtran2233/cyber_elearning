@@ -7,7 +7,7 @@ function CourseItem(props) {
 
 	const history = useHistory();
 	const goToDetail = () => {
-		history.push("/detail/" + maKhoaHoc + "/" + biDanh);
+		history.push("/details/" + maKhoaHoc + "/" + biDanh);
 	};
 
 	return (

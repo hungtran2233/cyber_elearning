@@ -14,7 +14,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Slider from "react-slick";
-import { fetchCourseAction } from "../../ultis/homeAction";
+import { fetchCourseAction } from "../../utils/homeAction";
 import CourseItem from "./CourseItem";
 
 function CourseCategory(props) {

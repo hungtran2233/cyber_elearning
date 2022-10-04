@@ -1,4 +1,5 @@
 .details {
+  font-family: "SF Pro Display";
   .header__details {
     height: max-content;
     padding: 16px 0px 32px 112px;
@@ -10,23 +11,107 @@
     );
     margin-top: -7px;
     min-height: 385px;
+    .title {
+      margin-top: 30px;
+      .courseName {
+        color: #1d1e22;
+
+        font-size: 32px;
+        font-style: normal;
+        text-align: left;
+        font-family: SF Pro Display;
+        font-weight: bold;
+        line-height: 40px;
+      }
+      .description {
+        color: #1d1e22;
+
+        font-size: 16px;
+        font-style: normal;
+        font-family: SF Pro Display;
+        font-weight: normal;
+        line-height: 24px;
+      }
+      .rate {
+        font-size: 20px;
+      }
+    }
   }
   .body__details {
     .info__course {
-      cursor: auto;
+      .left__course {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        .infoBenefit {
+          padding: 0px 24px;
+          margin-top: 20px;
+          margin-bottom: 24px;
+          .listBenefit {
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 2;
+          }
+        }
+        .comment {
+          padding: 15px;
+          .comment__body {
+            .rate_comment {
+              text-align: center;
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+              justify-content: space-around;
+            }
+            .text {
+              margin-top: 10px;
+              font-size: 16px;
+              font-weight: 600;
+              color: #082346;
+              line-height: 24px;
+            }
+            .studentComment {
+              .student {
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 1.43;
+                width: 100%;
+                border-radius: 10px;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+                  rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+              }
+            }
+          }
+        }
+      }
       .right__course {
         position: relative;
         display: flex;
         justify-content: center;
         z-index: 1000;
         .card__payment {
+          cursor: auto;
           height: fit-content;
           z-index: 11;
           position: fixed;
           border-radius: 20px;
           width: 350px;
           background: #ffffff;
-
+          .meta {
+            display: flex;
+            margin-top: 11px;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            .currentPrice {
+              color: #000000;
+              text-decoration: line-through;
+            }
+            .sellingPrice {
+              color: #c89f65;
+              font-size: 32px;
+              font-weight: bold;
+              margin-left: 5px;
+            }
+          }
           .btn__add {
             color: #000000;
             border: 1px solid #000000;
@@ -35,6 +120,7 @@
             border-radius: 100px;
             width: 200px;
             height: 40px;
+            margin: 10px 0;
           }
           .btn__payment {
             background-color: #fccf00;
@@ -45,6 +131,14 @@
             border-radius: 100px;
             width: 200px;
             height: 40px;
+          }
+          .icon {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            font-size: 30px;
+            color: #c89f65;
+            align-items: center;
           }
         }
       }

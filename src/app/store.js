@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import detailSlice from "features/elearning/pages/detail/ultis/detailSlice";
-import homeSlice from "features/elearning/pages/home/ultis/homeSlice";
+import homeSlice from "features/elearning/pages/home/utils/homeSlice";
 
 const store = configureStore({
-	reducer: {
-		eLearningHome: homeSlice.reducer,
-		eLearningDetail: detailSlice.reducer,
-	},
+  reducer: {
+    eLearningHome: homeSlice.reducer,
+  },
 });
 export default store;
