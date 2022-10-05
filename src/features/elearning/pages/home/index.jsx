@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Banner from "./components/Banner";
 import CourseCategory from "./components/CourseCategory";
-import { fetchAllCourseListAction,fetchCategoryAction } from "./utils/homeAction";
+import { fetchAllCourseListAction, fetchCategoryAction } from "./utils/homeAction";
 // Slick slider --by Hung
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

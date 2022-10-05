@@ -8,6 +8,10 @@ import {
 	StarFilled,
 } from "@ant-design/icons";
 import { Card, Col, Row, Spin } from "antd";
+import { getNumberDistanceDate } from "common/utils/date";
+import { formatFullName } from "common/utils/formatFullName";
+import SampleNextArrow from "features/elearning/components/SliderArrow/SampleNextArrow";
+import SamplePrevArrow from "features/elearning/components/SliderArrow/SamplePrevArrow";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -40,12 +44,12 @@ function CourseCategory(props) {
 	};
 
 	const handleChangeCategory = (value) => {
-		// console.log(value);
-		setTitleCourse(value);
-		if (value === "Tất cả khóa học") {
+		if (value === "all") {
 			setSelectedCourseList(allCourseList);
+			setTitleCourse("Tất cả khóa học");
 		} else {
-			fetchCourse(value);
+			fetchCourse(value.maDanhMuc);
+			setTitleCourse(value.tenDanhMuc);
 		}
 	};
 
@@ -77,14 +81,37 @@ function CourseCategory(props) {
 			speed: 500,
 			slidesToShow: 4,
 			slidesToScroll: 4,
+			nextArrow: <SampleNextArrow />,
+			prevArrow: <SamplePrevArrow />,
 		};
 		return (
-			<Slider {...settings}>
+			<Slider {...settings} className="slider-custom">
 				{selectedCourseList?.map((item) => {
 					return <CourseItem key={item.maKhoaHoc} item={item} />;
 				})}
 			</Slider>
 		);
+	};
+
+	// setting adv-label
+	const renderAdvLabel = (date, view) => {
+		const distance = getNumberDistanceDate(date);
+		if (view >= 100) {
+			return (
+				<div className="label-box">
+					<span className="hot">HOT</span>
+					{distance < 30 ? <span className="new">NEW</span> : <></>}
+				</div>
+			);
+		}
+		if (distance < 30) {
+			return (
+				<div className="label-new">
+					<span>NEW</span>
+				</div>
+			);
+		}
+		return;
 	};
 
 	// render normal
@@ -93,11 +120,23 @@ function CourseCategory(props) {
 			return (
 				<div key={item.maKhoaHoc} className="normal-item">
 					<Card hoverable className="normal-card">
-						<div className="card-img">
+						{renderAdvLabel(item.ngayTao, item.luotXem)}
+						<div className="card-image">
 							<img src={item.hinhAnh} alt="" />
 						</div>
-						<p>{item.maKhoaHoc}</p>
-						<p>{item.tenKhoaHoc}</p>
+						<div className="card-detail">
+							<p className="title">{item.tenKhoaHoc}</p>
+							<p className="teacher">
+								Giảng viên:{" "}
+								<span>{formatFullName(item.nguoiTao.hoTen)}</span>
+							</p>
+							<p>
+								Ngày tạo: <span>{item.ngayTao}</span>{" "}
+							</p>
+							<p>
+								Lượt xem: <span>{item.luotXem}</span>
+							</p>
+						</div>
 					</Card>
 				</div>
 			);
@@ -114,7 +153,7 @@ function CourseCategory(props) {
 						<Card
 							hoverable
 							className="card-custom"
-							onClick={() => handleChangeCategory("Tất cả khóa học")}
+							onClick={() => handleChangeCategory("all")}
 						>
 							<div className="logo">
 								<StarFilled />
@@ -128,7 +167,7 @@ function CourseCategory(props) {
 								<Card
 									hoverable
 									className="card-custom"
-									onClick={() => handleChangeCategory(item.maDanhMuc)}
+									onClick={() => handleChangeCategory(item)}
 								>
 									<div className="logo">{renderIcon(index)}</div>
 									<div className="title">{item.tenDanhMuc}</div>
@@ -143,7 +182,7 @@ function CourseCategory(props) {
 				<h2> {titleCourse} </h2>
 
 				{selectedCourseList.length > 4 ? (
-					renderSlider()
+					<div className="slider-list">{renderSlider()}</div>
 				) : (
 					<div className="normal-list">{renderNormal()}</div>
 				)}
