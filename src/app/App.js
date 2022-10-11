@@ -6,6 +6,7 @@ import Home from "features/elearning/pages/home";
 import Detail from "features/elearning/pages/details";
 import SignIn from "features/authentication/SignIn";
 import SignUp from "features/authentication/SignUp";
+import Footer from "common/components/Footer";
 
 function App() {
 	return (
@@ -18,6 +19,7 @@ function App() {
 					<Route path="/signin" component={SignIn} />
 					<Route path="/signup" component={SignUp} />
 				</Switch>
+				<Footer/>
 			</Router>
 		</div>
 	);

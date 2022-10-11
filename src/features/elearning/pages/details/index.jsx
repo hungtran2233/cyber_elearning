@@ -6,12 +6,11 @@ import { useRouteMatch } from "react-router-dom";
 import instance from "api/instance";
 import {
   CheckCircleOutlined,
-  CopyOutlined,
   HeartOutlined,
   ShareAltOutlined,
   ShoppingCartOutlined,
-  SmileOutlined,
 } from "@ant-design/icons";
+import CommentStudent from "./components/Comment/CommentStudent";
 const { Meta } = Card;
 const Detail = () => {
   const [infoCourse, setInfoCourse] = useState(null);
@@ -36,6 +35,7 @@ const Detail = () => {
       setLoading(false);
     }
   };
+  console.log(infoCourse);
   const fetchInfo = () => {
     fetchInfoCourse(match.params.id);
   };
@@ -44,7 +44,7 @@ const Detail = () => {
   }, []);
   if (loading) return <Spin></Spin>;
   if (!infoCourse) return <Spin></Spin>;
-  const { tenKhoaHoc, moTa, danhMucKhoaHoc } = infoCourse;
+  const { tenKhoaHoc, moTa, danhMucKhoaHoc, hinhAnh } = infoCourse;
   return (
     <div className="details">
       <div className="header__details">
@@ -76,7 +76,7 @@ const Detail = () => {
       </div>
       <div className="body__details">
         <div className="container">
-          <Row  className="info__course">
+          <Row className="info__course">
             <Col span={16} className="left__course">
               <div className="infoBenefit">
                 <h1
@@ -109,7 +109,7 @@ const Detail = () => {
                   </ul>
                 </div>
               </div>
-              <div className="comment">
+              <div className="lecturers">
                 <h1
                   style={{
                     color: "#082346",
@@ -117,99 +117,14 @@ const Detail = () => {
                     fontWeight: "800",
                   }}
                 >
-                  Đánh Giá Từ Học Viên
+                  Giảng Viên
                 </h1>
-                <div className="comment__body">
-                  <Row style={{ justifyContent: "space-between" }}>
-                    <Col span={8}>
-                      <div className="rate_comment">
-                        <h1 style={{ fontWeight: "800", margin: 0 }}>4/5</h1>
-                        <Rate disabled defaultValue={4} />
-
-                        <p
-                          style={{
-                            fontSize: "16px",
-                            fontWeight: "600",
-                            marginTop: "5px",
-                          }}
-                        >
-                          245,123 Đánh Giá
-                        </p>
-                      </div>
-                      <div className="text">
-                        <p>
-                          <SmileOutlined /> Giảng Viên Thân Thiện Nhiệt Tình
-                        </p>
-                        <p>
-                          <CopyOutlined /> Tài Liệu Chi Tiết, Dễ Hiểu
-                        </p>
-                      </div>
-                    </Col>
-                    <Col className=" studentComment" span={16}>
-                      <Row style={{alignItems:'center'}} gutter={[20,16]}>
-                        <Col span={11}>
-                          <Card
-                            className="student"
-                            size="small"
-                            title="Trần Huy Phong"
-                            extra={<Rate disabled value={4} />}
-                          >
-                            <p
-                              style={{
-                                height: 70,
-                                overflowY: "scroll",
-                                scrollbarWidth: "none",
-                              }}
-                            >
-                              Giọng giảng viên hay, trang phục lịch sự và phù
-                              hợp.Nội dung có nhiều những tình huống cụ thể để
-                              học viên dễ dàng hình dung bài học. Khóa học phù
-                              hợp với người mới bắt đầu vì giảng viên dạy từ cơ
-                              bản
-                            </p>
-                          </Card>
-                        </Col>
-                        <Col span={11}>
-                          <Card
-                            className="student"
-                            size="small"
-                            title="Trần Hiếu"
-                            extra={<Rate disabled value={3} />}
-                          >
-                            <p
-                              style={{
-                                height: 70,
-                                overflowY: "scroll",
-                                scrollbarWidth: "none",
-                              }}
-                            >
-                             Giảng viên giảng dạy một cách chi tiết và tỉ mỉ và kết hợp thực hành trực tiếp
-                            </p>
-                          </Card>
-                        </Col>
-                        <Col span={11}>
-                          <Card
-                            className="student"
-                            size="small"
-                            title="Trần Hưng"
-                            extra={<Rate disabled value={5} />}
-                          >
-                            <p
-                              style={{
-                                height: 70,
-                                overflowY: "scroll",
-                                scrollbarWidth: "none",
-                              }}
-                            >
-                            Hình thức giảng dạy dễ nghe, gần gũi, có sự lôi cuốn. nội dung thực tế hữu dụng. Cảm ơn Giảng viên và đội ngũ
-                            </p>
-                          </Card>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                </div>
+                <Row>
+                  <Col span={8}></Col>
+                  <Col span={16}></Col>
+                </Row>
               </div>
+              <CommentStudent />
             </Col>
             <Col
               span={6}
@@ -218,16 +133,18 @@ const Detail = () => {
               className="right__course"
             >
               <Card
+                
                 className="card__payment"
                 hoverable
                 cover={
                   <img
                     style={{ borderRadius: "20px 20px 0 0" }}
                     alt="example"
-                    src="https://d1nzpkv5wwh1xf.cloudfront.net/640/k-57b67d6e60af25054a055b20/20170817-tungnt9image1708/duonglt03.png"
+                    src={hinhAnh}
                   />
                 }
               >
+                <hr/>
                 <div className="meta">
                   <div className="currentPrice">799,000 đ</div>
                   <div className="sellingPrice">399,000 đ</div>
