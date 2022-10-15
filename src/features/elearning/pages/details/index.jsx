@@ -11,6 +11,8 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import CommentStudent from "./components/Comment/CommentStudent";
+import LecturersInfo from "./components/LecturersInfo/LecturersInfo";
+import Loading from "common/components/Loading/Loading";
 const { Meta } = Card;
 const Detail = () => {
   const [infoCourse, setInfoCourse] = useState(null);
@@ -20,15 +22,19 @@ const Detail = () => {
   const fetchInfoCourse = async (idCourse) => {
     try {
       setLoading(true);
-      const res = await instance.request({
-        url: "/api/QuanLyKhoaHoc/LayThongTinKhoaHoc",
-        method: "GET",
-        params: {
-          maKhoaHoc: idCourse,
-        },
-      });
-      setInfoCourse(await res.data);
-      setLoading(false);
+      await setTimeout(async ()=>{
+        const res = await instance.request({
+          url: "/api/QuanLyKhoaHoc/LayThongTinKhoaHoc",
+          method: "GET",
+          params: {
+            maKhoaHoc: idCourse,
+          },
+        });
+        setInfoCourse(await res.data);
+        setLoading(false);
+      },1500)
+      
+     
     } catch (error) {
       setLoading(false);
     } finally {
@@ -42,11 +48,12 @@ const Detail = () => {
   useEffect(() => {
     fetchInfo();
   }, []);
-  if (loading) return <Spin></Spin>;
-  if (!infoCourse) return <Spin></Spin>;
+  if (loading) return <Loading></Loading>;
+  if (!infoCourse) return <Loading></Loading>;
   const { tenKhoaHoc, moTa, danhMucKhoaHoc, hinhAnh } = infoCourse;
   return (
     <div className="details">
+      <div className="fa120471"></div>
       <div className="header__details">
         <div style={{ width: "55%" }} className="title">
           <div>
@@ -109,22 +116,11 @@ const Detail = () => {
                   </ul>
                 </div>
               </div>
-              <div className="lecturers">
-                <h1
-                  style={{
-                    color: "#082346",
-                    fontSize: "25px",
-                    fontWeight: "800",
-                  }}
-                >
-                  Giảng Viên
-                </h1>
-                <Row>
-                  <Col span={8}></Col>
-                  <Col span={16}></Col>
-                </Row>
-              </div>
+
+              <LecturersInfo infoCourse={infoCourse} />
+
               <CommentStudent />
+
             </Col>
             <Col
               span={6}
@@ -133,7 +129,6 @@ const Detail = () => {
               className="right__course"
             >
               <Card
-                
                 className="card__payment"
                 hoverable
                 cover={
@@ -144,7 +139,7 @@ const Detail = () => {
                   />
                 }
               >
-                <hr/>
+                <hr />
                 <div className="meta">
                   <div className="currentPrice">799,000 đ</div>
                   <div className="sellingPrice">399,000 đ</div>
@@ -155,7 +150,7 @@ const Detail = () => {
                   </Button>
                 </div>
                 <div style={{ textAlign: "center", margin: "10px  0 20px 0" }}>
-                  <Button className="btn__payment">Thanh Toán Ngay</Button>
+                  <Button className="btn__payment">Đăng Kí Ngay</Button>
                 </div>
                 <hr />
                 <div className="icon">

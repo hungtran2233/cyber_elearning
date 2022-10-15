@@ -22,7 +22,7 @@
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.5.2",
-    "swiper": "^8.4.2",
+    "swiper": "^8.4.4",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },

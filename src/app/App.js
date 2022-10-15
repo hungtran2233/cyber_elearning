@@ -8,6 +8,7 @@ import SignIn from "features/authentication/SignIn";
 import SignUp from "features/authentication/SignUp";
 import Footer from "common/components/Footer";
 
+
 function App() {
 	return (
 		<div>
