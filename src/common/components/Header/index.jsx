@@ -5,6 +5,7 @@ import {
 	CalendarOutlined,
 	HomeOutlined,
 	UnorderedListOutlined,
+	ShoppingCartOutlined,
 } from "@ant-design/icons";
 import instance from "api/instance";
 import beeLogo from "../../../assets/icon/logo-bee.png";
@@ -22,19 +23,21 @@ const Header = () => {
 
 	const onClick = (e) => {
 		setCurrent(e.key);
-		if (e.key === "user-signin") {
-			history.push("/signin");
-		}
-		if (e.key === "user-signup") {
-			history.push("/signup");
-		}
 	};
 
-	const items = [
+	// handle click sign in
+	const handleSignIn = () => {
+		history.push("/signin");
+	};
+
+	const items1 = [
 		{
-			label: "Danh Mục Khóa Học",
-			key: "cate",
-			icon: <UnorderedListOutlined />,
+			label: "TRANG CHỦ",
+			key: "home",
+		},
+		{
+			label: "KHÓA HỌC",
+			key: "category",
 			children: [
 				{
 					label: "Lập trình Backend",
@@ -62,7 +65,17 @@ const Header = () => {
 				},
 			],
 		},
+		{
+			label: "BLOG",
+			key: "blog",
+		},
+		{
+			label: "LIÊN HỆ",
+			key: "about",
+		},
+	];
 
+	const items2 = [
 		{
 			label: "Tài khoản",
 			key: "user",
@@ -84,31 +97,41 @@ const Header = () => {
 			<div className="container">
 				<Layout.Header className="navbar">
 					<div className="left" onClick={goToHome}>
-						<div className="title">bee</div>
 						<div className="logo">
 							<img src={beeLogo} alt="" />
 						</div>
+						<div className="title">bee</div>
 					</div>
 
-					<div className="middle">search bar</div>
-
-					<div className="language">
-						<div className="vi-lan">
-							<img src={viFlag} alt="" />
-							<span>VI</span>
-						</div>
-						<div className="en-lan">
-							<img src={enFlag} alt="" />
-							<span>EN</span>
-						</div>
-					</div>
 					<Menu
 						onClick={onClick}
 						selectedKeys={[current]}
 						mode="horizontal"
-						className="right"
-						items={items}
+						className="menu-custom"
+						items={items1}
 					/>
+
+					<div className="language">
+						<div className="icon">
+							<img src={enFlag} alt="" />
+						</div>
+						<div className="country">English</div>
+					</div>
+
+					<div className="right">
+						<div className="cart">
+							<div className="cart-icon">
+								<ShoppingCartOutlined />
+							</div>
+						</div>
+
+						<div className="auth-user" onClick={handleSignIn}>
+							<div className="sign-in">
+								<UserOutlined style={{ fontSize: 16, marginRight: 5 }} />
+								Đăng nhập
+							</div>
+						</div>
+					</div>
 				</Layout.Header>
 			</div>
 		</Layout>

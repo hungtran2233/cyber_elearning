@@ -1,23 +1,19 @@
 .Header {
-	background-color: #fff;
 	box-shadow: rgba(50, 50, 93, 0.25) 10px -9px 12px -2px,
 		rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+	background-color: #fff;
+	margin-bottom: 2px;
 
 	.navbar {
 		display: flex;
-		align-items: center;
 		justify-content: space-between;
+		align-items: center;
 		background-color: #fff;
 		padding: 0;
 		.left {
-			width: 20%;
 			display: flex;
-			align-items: center;
-			justify-content: start;
-			cursor: pointer;
-
 			.title {
-				font-size: 60px;
+				font-size: 40px;
 				font-weight: bold;
 				letter-spacing: 5px;
 				background: -webkit-linear-gradient(rgb(95, 93, 93), rgb(234, 241, 19));
@@ -26,49 +22,39 @@
 			}
 			.logo {
 				img {
-					width: 80px;
-					height: 80px;
+					width: 60px;
+					height: 60px;
 					object-fit: cover;
 				}
 			}
 		}
 
-		.middle {
+		.menu-custom {
+			margin-left: 20px;
+			display: flex;
+			justify-content: start;
+			font-size: 1.5rem;
 			width: 40%;
-			border: 1px solid blue;
+			border-bottom: none;
+			color: #525252;
+			font-weight: 600;
+			.nav-sub {
+				margin-left: 10px;
+			}
 		}
 
 		.language {
-			width: 15%;
-
 			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			align-items: center;
-
-			.vi-lan,
-			.en-lan {
-				width: 45%;
-				height: 30px;
-				border: 1px solid rgb(208, 207, 207);
-				border-radius: 5px;
-				text-align: center;
-				line-height: 30px;
-				margin-left: 5px;
-				cursor: pointer;
-				transition: all 0.5s;
-				&:hover {
-					background: #d8d7d7;
-				}
-
+			line-height: normal;
+			padding: 3px 10px 3px 5px;
+			border: 1px solid grey;
+			border-radius: 5px;
+			cursor: pointer;
+			.icon {
 				img {
-					width: 25px;
-					height: 15px;
-					object-fit: cover;
-				}
-				span {
-					margin-left: 2px;
-					line-height: 15px;
+					width: 30px;
+					height: 10px;
+					object-fit: contain;
 				}
 			}
 		}
@@ -76,14 +62,27 @@
 		.right {
 			display: flex;
 			justify-content: end;
-			font-size: 1.5rem;
-			width: 40%;
-			border-bottom: none;
-			color: #525252;
-			font-weight: 600;
-			.nav-sub {
-				margin-left: 20px;
+			gap: 20px;
+
+			.cart {
+				.cart-icon {
+					font-size: 24px;
+				}
+			}
+
+			.auth-user {
+				.sign-in {
+					display: inline-block;
+					line-height: normal;
+					cursor: pointer;
+					padding: 5px 15px;
+					border: 1px solid grey;
+					border-radius: 5px;
+				}
 			}
 		}
 	}
+}
+
+@media only screen and (max-width: 768px) {
 }
