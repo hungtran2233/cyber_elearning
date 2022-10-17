@@ -1,11 +1,11 @@
-import React from 'react'
-import imgLoading from 'assets/background/loading.gif'
+import React from "react";
+import imgLoading from "assets/img/background/loading.gif";
 const Loading = () => {
-  return (
-    <div style={{textAlign:'center'}}>
-        <img src={imgLoading}/>
-    </div>
-  )
-}
+	return (
+		<div style={{ textAlign: "center" }}>
+			<img src={imgLoading} />
+		</div>
+	);
+};
 
-export default Loading
+export default Loading;

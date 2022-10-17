@@ -7,7 +7,7 @@ import { signInAction } from "../authAction";
 import * as yup from "yup";
 import { Button, Checkbox, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import bgSignIn from "assets/background/bg-signin.jpg";
+import bgSignIn from "assets/img/background/bg-signin.jpg";
 import "./_signIn.scss";
 
 const schema = yup.object({

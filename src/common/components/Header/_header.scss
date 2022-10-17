@@ -212,8 +212,6 @@
 			.right-menu {
 				.language {
 					margin-right: 10px;
-					.icon {
-					}
 				}
 
 				.cart {
@@ -229,5 +227,17 @@
 	}
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 576px) {
+	.ant-layout-header {
+		.header-master {
+			.right-menu {
+				.user-info {
+					padding: 0;
+					span {
+						display: none;
+					}
+				}
+			}
+		}
+	}
 }

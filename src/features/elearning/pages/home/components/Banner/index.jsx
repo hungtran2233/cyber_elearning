@@ -1,41 +1,39 @@
 import React from "react";
-import banner from "assets/background/bg-image-22.jpg";
-import "./_banner.scss";
-const index = () => {
-  return (
-    <div className="banner">
-      <div className="banner_content">
-        <div className="banner_cover">
-          <div className="banner_title">
-            <h1 className="banner--h1">
-              Bắt đầu tìm khóa học yêu thích <br /> từ Bee-Elearning
-            </h1>
-            <p className="banner--p">
-              Học tập được ví như hạt giống của kiến thức, còn kiến thức được ví
-              như hạt giống của hạnh phúc.
-            </p>
-          </div>
-          <div className="banner_search">
-            <div id="cover">
-              <form method="get" action>
-                <div className="tb">
-                  <div className="td">
-                    <input type="text" placeholder="Tìm Kiếm" required />
-                  </div>
-                  <div className="td" id="s-cover">
-                    <button className="btn--search" >
-                      <div id="s-circle" />
-                      <span />
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+import bgBanner from "assets/img/background/bg-2.jpg";
+import Typewriter from "typewriter-effect";
+import SearchBar from "./components/SearchBar";
 
-export default index;
+function Banner(props) {
+	// console.log(props.allCourseList);
+	const allCourseList = props.allCourseList;
+
+	return (
+		<div className="Banner" style={{ backgroundImage: `url(${bgBanner})` }}>
+			<div className="container">
+				<div className="content">
+					<h1 className="title">
+						Bắt đầu tìm khóa học yêu thích tại <strong>Bee-ELearning</strong>
+					</h1>
+					<p className="description">
+						<i className="fas fa-quote-left"></i>Học tập được ví như hạt giống
+						của kiến thức, <br /> còn kiến thức được ví như hạt giống của hạnh
+						phúc<i className="fas fa-quote-right"></i>
+					</p>
+					<Typewriter
+						options={{
+							strings: ["I'm a Website Developer !", "Let'go !"],
+							autoStart: true,
+							loop: true,
+						}}
+					/>
+
+					<div className="search-area">
+						<SearchBar allCourseList={allCourseList} />
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+export default Banner;
