@@ -11,8 +11,8 @@ import bgSignIn from "assets/background/bg-signin.jpg";
 import "./_signIn.scss";
 
 const schema = yup.object({
-	taiKhoan: yup.string().required("*Trường này bắt buộc nhập ! "),
-	matKhau: yup.string().required("*Trường này bắt buộc nhập ! "),
+	taiKhoan: yup.string().required("*Bạn chưa nhập tài khoản ! "),
+	matKhau: yup.string().required("*Bạn chưa nhập mật khẩu ! "),
 });
 
 function SignIn() {
@@ -33,6 +33,27 @@ function SignIn() {
 
 	const signIn = async (user) => {
 		const data = await dispatch(signInAction(user));
+		if (!data.payload) {
+			Swal.fire({
+				title: "Error!",
+				text: "Sai tài khoản hoặc mật khẩu, vui lòng nhập lại !",
+				icon: "error",
+				showConfirmButton: false,
+				timer: 1500,
+			});
+			return;
+		} else {
+			// alert("Đăng nhập thành công !");
+			Swal.fire({
+				position: "center",
+				icon: "success",
+				title: "Đăng nhập thành công !",
+				text: "Let'go !",
+				showConfirmButton: false,
+				timer: 1500,
+			});
+			setTimeout(() => history.push("/"), 2000);
+		}
 	};
 
 	return (
@@ -81,7 +102,9 @@ function SignIn() {
 
 				<div className="signup-tips">
 					<p>Chưa có tài khoản ?</p>
-					<div className="btn-signup">Tạo tài khoản mới</div>
+					<div className="btn-signup" onClick={() => history.push("/signup")}>
+						Tạo tài khoản mới
+					</div>
 				</div>
 			</div>
 		</div>

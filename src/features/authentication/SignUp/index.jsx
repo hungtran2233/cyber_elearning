@@ -9,7 +9,10 @@ import { Button, Checkbox, Input, Modal } from "antd";
 import { useFormik } from "formik";
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
+import bgSignUp from "assets/img/background/bg-signup.jpg";
+import { signUpAction } from "../authAction";
 
 const schema = yup.object({
 	taiKhoan: yup
@@ -33,6 +36,7 @@ const schema = yup.object({
 
 function SignUp() {
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	const formik = useFormik({
 		initialValues: {
@@ -43,15 +47,26 @@ function SignUp() {
 			soDt: "",
 		},
 
-		onSubmit: () => {},
+		onSubmit: (user) => {
+			const newUser = { ...user, maNhom: "GP01" };
+			signUp(newUser);
+		},
 
 		validationSchema: schema,
 	});
 
-	const signUp = () => {};
+	const signUp = async (user) => {
+		const data = await dispatch(signUpAction(user));
+		if (!data.payload) {
+			return alert("Tài khoản hoặc email đã tồn tại, vui lòng nhập lại !");
+		} else {
+			alert("Đăng kí thành công !");
+			history.push("/signin");
+		}
+	};
 
 	return (
-		<div className="SignUp">
+		<div className="SignUp" style={{ backgroundImage: `url(${bgSignUp})` }}>
 			<div className="container">
 				<div className="content">
 					<h2 className="title">Đăng kí tài khoản</h2>
@@ -164,7 +179,11 @@ function SignUp() {
 
 					<div className="signin-tips">
 						<p>Bạn đã có tài khoản ?</p>
-						<Button type="primary" className="btn-signin">
+						<Button
+							type="primary"
+							className="btn-signin"
+							onClick={() => history.push("/signin")}
+						>
 							Đăng nhập
 						</Button>
 					</div>

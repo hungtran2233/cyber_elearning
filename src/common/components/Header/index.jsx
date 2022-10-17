@@ -1,141 +1,185 @@
-import React, { useEffect, useState } from "react";
-import { Layout, Menu } from "antd";
-import {
-	UserOutlined,
-	CalendarOutlined,
-	HomeOutlined,
-	UnorderedListOutlined,
-	ShoppingCartOutlined,
-} from "@ant-design/icons";
-import instance from "api/instance";
-import beeLogo from "../../../assets/icon/logo-bee.png";
-import viFlag from "../../../assets/icon/vi-flag.png";
-import enFlag from "../../../assets/icon/en-flag.png";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { Anchor, Drawer, Button, Menu, Dropdown, Space } from "antd";
+import { Header } from "antd/lib/layout/layout";
+import mainLogo from "assets/img/icon/logo-bee.png";
+import enFlag from "assets/img/icon/en-flag.png";
+import user1 from "assets/img/user/pic2_3.jpg";
+import { NavLink, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { DownOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons";
+import { formatFullName, formatName, upperCaseFirst } from "common/utils/formatFullName";
+import Swal from "sweetalert2";
+import { fetchProfileAction } from "features/authentication/authAction";
 
-const Header = () => {
-	const [current, setCurrent] = useState("");
+const { Link } = Anchor;
 
+function AppHeader() {
 	const history = useHistory();
-	const goToHome = () => {
-		history.push("/");
+	const dispatch = useDispatch();
+
+	// setting responsive
+	const [visible, setVisible] = useState(false);
+	const showDrawer = () => {
+		setVisible(true);
+	};
+	const onClose = () => {
+		setVisible(false);
 	};
 
-	const onClick = (e) => {
-		setCurrent(e.key);
+	// render user info
+	const userProfile = useSelector((state) => state.auth.profile);
+
+	// Logout
+	const logout = () => {
+		Swal.fire({
+			title: "Bạn có muốn đăng xuất không ?",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			cancelButtonText: "Hủy",
+			confirmButtonText: "Đăng xuất!",
+		}).then((result) => {
+			if (result.isConfirmed) {
+				Swal.fire({
+					position: "center",
+					icon: "success",
+					title: "Đăng xuất thành công !",
+					text: "Hẹn gặp lại !",
+					showConfirmButton: false,
+					timer: 1500,
+				});
+				///////
+				// 1) Remove token localStorage
+				localStorage.removeItem("token");
+				localStorage.removeItem("login");
+
+				// 2) Set profile Store --> null
+				dispatch(fetchProfileAction({ payload: null }));
+				history.push("/");
+			}
+		});
 	};
 
-	// handle click sign in
-	const handleSignIn = () => {
-		history.push("/signin");
+	const handleClick = (e) => {
+		if (e.key === "profile") {
+			history.push("/profile");
+		}
+		if (e.key === "logout") {
+			logout();
+		}
+	};
+	const menu = (
+		<Menu
+			style={{ marginTop: 20 }}
+			items={[
+				{
+					label: "Thông tin cá nhân",
+					key: "profile",
+					icon: <UserOutlined />,
+				},
+				{
+					label: "Đăng xuất",
+					key: "logout",
+					icon: <LogoutOutlined />,
+				},
+			]}
+			onClick={handleClick}
+		/>
+	);
+
+	const renderUserInfo = () => {
+		if (userProfile) {
+			return (
+				<div className="content-user">
+					<Dropdown overlay={menu} className="dropdown-custom">
+						<a onClick={(e) => e.preventDefault()}>
+							<Space>
+								<div className="user-info">
+									<img src={user1} alt="" />
+
+									<span style={{ marginLeft: 5 }}>
+										{formatFullName(userProfile.hoTen)}
+									</span>
+								</div>
+								<DownOutlined />
+							</Space>
+						</a>
+					</Dropdown>
+				</div>
+			);
+		} else {
+			return (
+				<div className="btn-login" onClick={() => history.push("/signin")}>
+					<i className="fas fa-user"></i>
+					<span>Đăng nhập</span>
+				</div>
+			);
+		}
 	};
 
-	const items1 = [
-		{
-			label: "TRANG CHỦ",
-			key: "home",
-		},
-		{
-			label: "KHÓA HỌC",
-			key: "category",
-			children: [
-				{
-					label: "Lập trình Backend",
-					key: "cate-child-1",
-				},
-				{
-					label: "Thiết kế Web",
-					key: "cate-child-2",
-				},
-				{
-					label: "Lập trình di động",
-					key: "cate-child-3",
-				},
-				{
-					label: "Lập trình Front End",
-					key: "cate-child-4",
-				},
-				{
-					label: "Lập trình Full Stack",
-					key: "cate-child-5",
-				},
-				{
-					label: "Tư duy lập trình",
-					key: "cate-child-6",
-				},
-			],
-		},
-		{
-			label: "BLOG",
-			key: "blog",
-		},
-		{
-			label: "LIÊN HỆ",
-			key: "about",
-		},
-	];
-
-	const items2 = [
-		{
-			label: "Tài khoản",
-			key: "user",
-			icon: <UserOutlined />,
-			children: [
-				{
-					label: "Đăng Nhập",
-					key: "user-signin",
-				},
-				{
-					label: "Đăng Ký",
-					key: "user-signup",
-				},
-			],
-		},
-	];
 	return (
-		<Layout className="Header" style={{ display: "block" }}>
+		<Header>
 			<div className="container">
-				<Layout.Header className="navbar">
-					<div className="left" onClick={goToHome}>
-						<div className="logo">
-							<img src={beeLogo} alt="" />
+				<div className="header-master">
+					<div className="logo-box" onClick={() => history.push("/")}>
+						<div className="logo-icon">
+							<img src={mainLogo} alt="" />
 						</div>
+
 						<div className="title">bee</div>
 					</div>
+					<div className="mobileHidden">
+						<Anchor targetOffset="65">
+							<Link href="#hero" title="TRANG CHỦ" />
+							<Link href="#about" title="KHÓA HỌC" />
+							<Link href="#feature" title="Features" />
 
-					<Menu
-						onClick={onClick}
-						selectedKeys={[current]}
-						mode="horizontal"
-						className="menu-custom"
-						items={items1}
-					/>
-
-					<div className="language">
-						<div className="icon">
-							<img src={enFlag} alt="" />
-						</div>
-						<div className="country">English</div>
+							<Link href="#pricing" title="Pricing" />
+							<Link href="#contact" title="Contact" />
+						</Anchor>
 					</div>
 
-					<div className="right">
+					<div className="right-menu">
+						<div className="language">
+							<div className="icon">
+								<img src={enFlag} alt="" />
+							</div>
+							<div className="country">English</div>
+						</div>
+
 						<div className="cart">
-							<div className="cart-icon">
-								<ShoppingCartOutlined />
-							</div>
+							<i className="fas fa-shopping-cart"></i>
 						</div>
 
-						<div className="auth-user" onClick={handleSignIn}>
-							<div className="sign-in">
-								<UserOutlined style={{ fontSize: 16, marginRight: 5 }} />
-								Đăng nhập
-							</div>
-						</div>
+						{renderUserInfo()}
 					</div>
-				</Layout.Header>
-			</div>
-		</Layout>
-	);
-};
 
-export default Header;
+					<div className="mobileVisible">
+						<Button type="primary" onClick={showDrawer}>
+							<i className="fas fa-bars"></i>
+						</Button>
+						<Drawer
+							placement="right"
+							closable={false}
+							onClose={onClose}
+							open={visible}
+						>
+							<Anchor targetOffset="65">
+								<Link href="#hero" title="Home" />
+								<Link href="#about" title="About" />
+								<Link href="#feature" title="Features" />
+								<Link href="#works" title="How it works" />
+								<Link href="#faq" title="FAQ" />
+								<Link href="#pricing" title="Pricing" />
+								<Link href="#contact" title="Contact" />
+							</Anchor>
+						</Drawer>
+					</div>
+				</div>
+			</div>
+		</Header>
+	);
+}
+
+export default AppHeader;

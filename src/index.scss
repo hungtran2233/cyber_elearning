@@ -4,14 +4,21 @@
 @import "./styles/main.scss";
 //add fonts SFProDisPlay
 @font-face {
-    font-family: "SF Pro Display";
-    src: local("SF Pro Display") url('assets/fonts/SFProDisplay/SFPRODISPLAYBOLD.OTF') format('truetype');
-    font-weight: bold
+	font-family: "SF Pro Display";
+	src: local("SF Pro Display") url("assets/fonts/SFProDisplay/SFPRODISPLAYBOLD.OTF")
+		format("truetype");
+	font-weight: bold;
 }
 // ELearningHome -> CourseCategory
 @import "./features/elearning/pages/home/components/CourseCategory/courseCategory";
 
 @import "./features/elearning/pages/details/details.scss";
+
+// ELearning -> Header
+@import "./common/components/Header/header";
+
+// ELearning -> SignUp
+@import "./features/authentication/SignUp/signUp";
 
 // Slider -> Arrow
 @import "./features/elearning/components/SliderArrow/arrowSlick";
