@@ -18,7 +18,7 @@ const Detail = () => {
   const [infoCourse, setInfoCourse] = useState(null);
   const [loading, setLoading] = useState(false);
   const match = useRouteMatch();
-
+  console.log(match);
   const fetchInfoCourse = async (idCourse) => {
     try {
       setLoading(true);

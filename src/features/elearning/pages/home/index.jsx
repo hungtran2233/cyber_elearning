@@ -9,6 +9,7 @@ import { fetchAllCourseListAction, fetchCategoryAction } from "./utils/homeActio
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./_home.scss";
+import Review from "./components/Review/Review";
 
 function Home() {
 	const dispatch = useDispatch();
@@ -49,7 +50,7 @@ function Home() {
 	return (
 		<div className="Home">
 			<Banner allCourseList={allCourseList} />
-
+			<Review/>
 			{/* <CourseCategory category={category} allCourseList={allCourseList} /> */}
 		</div>
 	);
