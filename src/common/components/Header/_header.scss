@@ -229,17 +229,5 @@
 	}
 }
 
-@media only screen and (max-width: 576px) {
-	.ant-layout-header {
-		.header-master {
-			.logo-box {
-			}
-			.right-menu {
-				.user-info {
-					display: inline-block;
-					padding: 5px 5px;
-				}
-			}
-		}
-	}
+@media only screen and (max-width: 768px) {
 }

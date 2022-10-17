@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchProfileAction } from "features/authentication/authAction";
 
+
 function App() {
 	const dispatch = useDispatch();
 	useEffect(() => {
