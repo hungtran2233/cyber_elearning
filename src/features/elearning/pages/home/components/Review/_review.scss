@@ -17,15 +17,19 @@
           justify-content: center;
           .ant-tabs-nav-wrap {
             .ant-tabs-nav-list {
+              z-index: 3;
               height: 80%;
               flex-wrap: wrap;
               justify-content: center;
               .ant-tabs-tab {
+                z-index: 3;
                 .ant-tabs-tab-btn {
+                  z-index: 1000;
                   border-radius: 10px;
                   overflow: hidden;
                   position: relative;
                   &::after {
+                    z-index: 3;
                     content: "";
                     top: 0;
                     left: 0;
@@ -38,6 +42,7 @@
                     opacity: 1;
                   }
                   .image {
+                    z-index: 10000;
                     border-radius: 10px;
                     width: 100%;
                     object-fit: cover;

@@ -1,5 +1,5 @@
 import { Col, Row, Tabs } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./_review.scss";
 import reivew1 from "assets/img/user/testimonial-1.jpg";
 import reivew2 from "assets/img/user/testimonial-2.jpg";
@@ -44,13 +44,18 @@ const Review = () => {
       image: reivew5,
     },
   ];
-  
-  setTimeout(() => {
-    const i = 1;
-    if (activeKey == 5) {
-      setActiveKey(1);
-    } else setActiveKey(activeKey + 1);
-  }, 2000);
+
+  useEffect(() => {
+    const autoClick = setTimeout(() => {
+      const i = 1;
+      if (activeKey == 5) {
+        setActiveKey(1);
+      } else setActiveKey(activeKey + 1);
+    }, 2500);
+    return () => {
+      clearTimeout(autoClick);
+    };
+  });
   return (
     <div className="review">
       <h1
@@ -65,8 +70,12 @@ const Review = () => {
         Đánh Giá Của Học Viên
       </h1>
       <Tabs
+      
+        onTabClick={(key) => {
+        
+          setActiveKey(key);
+        }}
         activeKey={activeKey}
-        // defaultActiveKey="1"
         items={dataReview.map((item) => {
           return {
             label: <img className="image" src={item.image} />,
