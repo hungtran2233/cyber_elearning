@@ -2,13 +2,19 @@ import React from "react";
 import bgBanner from "assets/img/background/bg-2.jpg";
 import Typewriter from "typewriter-effect";
 import SearchBar from "./components/SearchBar";
+import Lottie from "lottie-react";
+import downArrow from "assets/animation/98428-arrow-down-purple/data.json";
 
 function Banner(props) {
 	// console.log(props.allCourseList);
 	const allCourseList = props.allCourseList;
 
 	return (
-		<div className="Banner" style={{ backgroundImage: `url(${bgBanner})` }}>
+		<div
+			id="banner"
+			className="Banner"
+			style={{ backgroundImage: `url(${bgBanner})` }}
+		>
 			<div className="container">
 				<div className="content">
 					<h1 className="title">
@@ -21,7 +27,7 @@ function Banner(props) {
 					</p>
 					<Typewriter
 						options={{
-							strings: ["I'm a Website Developer !", "Let'go !"],
+							strings: ["I'm a Full-Stack Developer !", "Let'go !"],
 							autoStart: true,
 							loop: true,
 						}}
@@ -30,6 +36,14 @@ function Banner(props) {
 					<div className="search-area">
 						<SearchBar allCourseList={allCourseList} />
 					</div>
+
+					{/* Animation arrow down  */}
+
+					<Lottie
+						className="down-arrow"
+						animationData={downArrow}
+						loop={true}
+					/>
 				</div>
 			</div>
 		</div>

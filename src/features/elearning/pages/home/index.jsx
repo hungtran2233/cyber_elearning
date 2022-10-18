@@ -48,9 +48,11 @@ function Home() {
 
 	return (
 		<div className="Home">
-			<Banner allCourseList={allCourseList} />
+			{/* <Banner allCourseList={allCourseList} /> */}
 
-			{/* <CourseCategory category={category} allCourseList={allCourseList} /> */}
+			<div style={{ paddingTop: 70, borderBottom: "1px solid grey" }}>tam</div>
+
+			<CourseCategory category={category} allCourseList={allCourseList} />
 		</div>
 	);
 }

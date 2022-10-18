@@ -3,8 +3,6 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./_searchBar.scss";
-import Lottie from "lottie-react";
-import downArrow from "assets/animation/98428-arrow-down-purple/data.json";
 
 function SearchBar(props) {
 	const allCourseList = props.allCourseList;
@@ -66,9 +64,6 @@ function SearchBar(props) {
 					})}
 				</div>
 			)}
-
-			{/* Animation arrow down  */}
-			<Lottie className="down-arrow" animationData={downArrow} loop={true} />
 		</div>
 	);
 }

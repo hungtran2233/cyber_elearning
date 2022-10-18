@@ -3,15 +3,14 @@ import {
 	AndroidFilled,
 	ChromeFilled,
 	HddFilled,
+	SearchOutlined,
 	SettingFilled,
 	SlackCircleFilled,
 	StarFilled,
 } from "@ant-design/icons";
-import { Card, Col, Row, Spin } from "antd";
+import { Button, Card, Col, Input, Row, Spin } from "antd";
 import { getNumberDistanceDate } from "common/utils/date";
 import { formatFullName } from "common/utils/formatFullName";
-import SampleNextArrow from "features/elearning/components/SliderArrow/SampleNextArrow";
-import SamplePrevArrow from "features/elearning/components/SliderArrow/SamplePrevArrow";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -21,23 +20,32 @@ import Slider from "react-slick";
 import { fetchCourseAction } from "../../utils/homeAction";
 import CourseItem from "./CourseItem";
 
+import { Select } from "antd";
+import { sortByNameAZ, sortByNameZA } from "common/utils/sort/sortByName";
+import { sortByViewDecrement, sortByViewIncrement } from "common/utils/sort/sortByView";
+import { sortByDateLates, sortByDateOldest } from "common/utils/sort/sortByDate";
+const { Option } = Select;
+
 function CourseCategory(props) {
 	// category list
 	const category = props.category;
 	const allCourseList = props.allCourseList;
 	const dispatch = useDispatch();
-
-	const history = useHistory();
-
-	// Get course list from redux
-	// const courseList = useSelector((state) => state.eLearningHome.courseList);
+	// sort by Name
+	const [sortName, setSortName] = useState("Sắp xếp theo tên");
+	// sort by View
+	const [sortView, setSortView] = useState("Lượt xem");
+	// sort by Date
+	const [sortDate, setSortDate] = useState("Ngày tạo");
 
 	// Get course
 	const [selectedCourseList, setSelectedCourseList] = useState(allCourseList);
-	// Title
-	const [titleCourse, setTitleCourse] = useState("Tất cả khóa học");
+	// console.log(selectedCourseList);
 
-	// Get course
+	// setting search bar
+	const [query, setQuery] = useState("");
+
+	// Get course for when click category item
 	const fetchCourse = async (id) => {
 		const data = await dispatch(fetchCourseAction(id));
 		setSelectedCourseList(data.payload);
@@ -46,13 +54,25 @@ function CourseCategory(props) {
 	const handleChangeCategory = (value) => {
 		if (value === "all") {
 			setSelectedCourseList(allCourseList);
-			setTitleCourse("Tất cả khóa học");
 		} else {
 			fetchCourse(value.maDanhMuc);
-			setTitleCourse(value.tenDanhMuc);
+		}
+		setSortName("Sắp xếp theo tên");
+		setSortView("Lượt xem");
+		setSortDate("Ngày tạo");
+	};
+
+	// Active CSS when click
+	const [activeId, setActiveId] = useState(100);
+	const toggleActive = (index) => {
+		if (index === activeId) {
+			return "active";
+		} else {
+			return "non_active";
 		}
 	};
 
+	// set icon for course category
 	const renderIcon = (index) => {
 		switch (index) {
 			case 0:
@@ -73,119 +93,189 @@ function CourseCategory(props) {
 		}
 	};
 
-	// render slider style
-	const renderSlider = () => {
-		const settings = {
-			dots: true,
-			infinite: true,
-			speed: 500,
-			slidesToShow: 4,
-			slidesToScroll: 4,
-			nextArrow: <SampleNextArrow />,
-			prevArrow: <SamplePrevArrow />,
-		};
-		return (
-			<Slider {...settings} className="slider-custom">
-				{selectedCourseList?.map((item) => {
-					return <CourseItem key={item.maKhoaHoc} item={item} />;
-				})}
-			</Slider>
-		);
+	// setting sort by Name (dropdown menu)
+	const handleSortByName = (e) => {
+		// console.log(e);
+		if (e === "az") {
+			setSortName("az");
+			setSelectedCourseList(sortByNameAZ(selectedCourseList));
+		}
+		if (e === "za") {
+			setSortName("za");
+			setSelectedCourseList(sortByNameZA(selectedCourseList));
+		}
 	};
 
-	// setting adv-label
-	const renderAdvLabel = (date, view) => {
-		const distance = getNumberDistanceDate(date);
-		if (view >= 100) {
-			return (
-				<div className="label-box">
-					<span className="hot">HOT</span>
-					{distance < 30 ? <span className="new">NEW</span> : <></>}
-				</div>
-			);
+	// setting sort by View
+	const handleSortByView = (e) => {
+		// console.log(e);
+		if (e === "decrement") {
+			setSortView("decrement");
+			setSelectedCourseList(sortByViewDecrement(selectedCourseList));
 		}
-		if (distance < 30) {
-			return (
-				<div className="label-new">
-					<span>NEW</span>
-				</div>
-			);
+		if (e === "increment") {
+			setSortView("increment");
+			setSelectedCourseList(sortByViewIncrement(selectedCourseList));
 		}
-		return;
 	};
 
-	// render normal
-	const renderNormal = () => {
-		return selectedCourseList?.map((item) => {
-			return (
-				<div key={item.maKhoaHoc} className="normal-item">
-					<Card hoverable className="normal-card">
-						{renderAdvLabel(item.ngayTao, item.luotXem)}
-						<div className="card-image">
-							<img src={item.hinhAnh} alt="" />
-						</div>
-						<div className="card-detail">
-							<p className="title">{item.tenKhoaHoc}</p>
-							<p className="teacher">
-								Giảng viên:{" "}
-								<span>{formatFullName(item.nguoiTao.hoTen)}</span>
-							</p>
-							<p>
-								Ngày tạo: <span>{item.ngayTao}</span>{" "}
-							</p>
-							<p>
-								Lượt xem: <span>{item.luotXem}</span>
-							</p>
-						</div>
-					</Card>
-				</div>
-			);
-		});
+	// setting sort by Date
+	const handleSortByDate = (e) => {
+		if (e === "latest") {
+			setSortDate("latest");
+			setSelectedCourseList(sortByDateLates(selectedCourseList));
+		}
+		if (e === "oldest") {
+			setSortDate("oldest");
+			setSelectedCourseList(sortByDateOldest(selectedCourseList));
+		}
+	};
+
+	// reset sort
+	const handleResetSort = () => {
+		setSortName("Sắp xếp theo tên");
+		setSortView("Lượt xem");
+		setSortDate("Ngày tạo");
 	};
 
 	return (
 		<div className="CourseCategory">
 			{/* {console.log(selectedCourseList)} */}
 			<div className="container">
-				<h1>Bee Academy có hơn 100 khóa học đang chờ bạn khám phá</h1>
-				<div className="category-list">
-					<div className="card-content">
-						<Card
-							hoverable
-							className="card-custom"
-							onClick={() => handleChangeCategory("all")}
+				<h1 className="title">Danh sách các khóa học tại Bee Academy</h1>
+
+				<Row style={{ marginBottom: 20 }}>
+					{/* Sort by Name  */}
+					<Col xs={6} sm={6} md={4} lg={4} xl={4}>
+						<Select
+							value={sortName}
+							style={{
+								width: "100%",
+							}}
+							onChange={handleSortByName}
 						>
-							<div className="logo">
-								<StarFilled />
-							</div>
-							<div className="title">Tất cả</div>
-						</Card>
-					</div>
-					{category?.map((item, index) => {
-						return (
-							<div key={item.maDanhMuc} className="card-content">
-								<Card
-									hoverable
+							<Option value="az">Từ A-Z</Option>
+							<Option value="za">Từ Z-A</Option>
+						</Select>
+					</Col>
+
+					{/* Sort by View */}
+					<Col xs={6} sm={6} md={4} lg={4} xl={4}>
+						<Select
+							value={sortView}
+							style={{
+								marginLeft: 20,
+
+								width: "80%",
+							}}
+							onChange={handleSortByView}
+						>
+							<Option value="decrement">Nhiều nhất</Option>
+							<Option value="increment">Ít nhất</Option>
+						</Select>
+					</Col>
+
+					{/* Sort by Date  */}
+					<Col xs={6} sm={6} md={4} lg={4} xl={4}>
+						<Select
+							value={sortDate}
+							style={{
+								marginLeft: 20,
+								width: "80%",
+							}}
+							onChange={handleSortByDate}
+						>
+							<Option value="latest">Mới nhất</Option>
+							<Option value="oldest">Cũ nhất</Option>
+						</Select>
+					</Col>
+
+					{/* Reset sort  */}
+					<Col xs={2} sm={2} md={2} lg={2} xl={2}>
+						<Button type="primary" onClick={handleResetSort}>
+							Đặt lại
+						</Button>
+					</Col>
+
+					{/* Search course by Name  */}
+					<Col xs={8} sm={8} md={10} lg={10} xl={10}>
+						<div className="query-search">
+							<Input
+								onChange={(e) => {
+									// console.log(e.target.value);
+									setQuery(e.target.value);
+								}}
+								placeholder="Tìm kiếm khóa học..."
+								prefix={<SearchOutlined style={{ marginRight: 10 }} />}
+								style={{
+									width: "80%",
+								}}
+							/>
+						</div>
+					</Col>
+				</Row>
+
+				<Row>
+					{/* Category  */}
+					<Col xs={8} sm={8} md={4} lg={4} xl={4}>
+						<div className="category-list">
+							<div className={"card-content" + " " + toggleActive(100)}>
+								<div
 									className="card-custom"
-									onClick={() => handleChangeCategory(item)}
+									onClick={() => {
+										handleChangeCategory("all");
+										setActiveId(100);
+									}}
 								>
-									<div className="logo">{renderIcon(index)}</div>
-									<div className="title">{item.tenDanhMuc}</div>
-								</Card>
+									<div className="logo">
+										<StarFilled />
+									</div>
+									<div className="title">Tất cả</div>
+								</div>
 							</div>
-						);
-					})}
-				</div>
+							{category?.map((item, index) => {
+								return (
+									<div
+										key={index}
+										className={
+											"card-content" + " " + toggleActive(index)
+										}
+									>
+										<div
+											className="card-custom"
+											onClick={() => {
+												handleChangeCategory(item);
+												setActiveId(index);
+											}}
+										>
+											<div className="logo">
+												{renderIcon(index)}
+											</div>
+											<div className="title">{item.tenDanhMuc}</div>
+										</div>
+									</div>
+								);
+							})}
+						</div>
+					</Col>
 
-				{/* <div className="course-detail"></div> */}
-
-				<h2> {titleCourse} </h2>
-
-				{selectedCourseList.length > 4 ? (
-					<div className="slider-list">{renderSlider()}</div>
-				) : (
-					<div className="normal-list">{renderNormal()}</div>
-				)}
+					{/* Course  */}
+					<Col xs={16} sm={16} md={20} lg={20} xl={20}>
+						<div className="course-list">
+							{selectedCourseList
+								?.filter((course) =>
+									course.tenKhoaHoc.toLowerCase().includes(query)
+								)
+								.map((item, index) => {
+									return (
+										<div key={index} className="item-content">
+											<CourseItem courseInfo={item} />
+										</div>
+									);
+								})}
+						</div>
+					</Col>
+				</Row>
 			</div>
 		</div>
 	);

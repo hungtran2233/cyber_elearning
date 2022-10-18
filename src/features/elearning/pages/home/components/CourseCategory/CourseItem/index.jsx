@@ -1,13 +1,27 @@
-import { Card } from "antd";
+import { EyeOutlined, HeartFilled, HeartOutlined } from "@ant-design/icons";
+import { Card, message } from "antd";
 import { getNumberDistanceDate } from "common/utils/date";
 import { formatFullName } from "common/utils/formatFullName";
 import React from "react";
+import { useCallback } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./_courseItem.scss";
 
 function CourseItem(props) {
 	const { maKhoaHoc, tenKhoaHoc, hinhAnh, biDanh, nguoiTao, ngayTao, luotXem } =
-		props.item;
+		props.courseInfo;
+
+	// console.log(props.courseInfo);
+	// setting heart
+	const success = () => {
+		message.success("Đã lưu vào mục yêu thích !");
+	};
+	const [toggleHeart, setToggleHeart] = useState(false);
+	const changeColor = useCallback(() => {
+		setToggleHeart(!toggleHeart);
+		success();
+	}, []);
 
 	const history = useHistory();
 	const goToDetail = () => {
@@ -36,31 +50,40 @@ function CourseItem(props) {
 	};
 
 	return (
-		<div className="CourseItem" onClick={goToDetail}>
+		<div className="CourseItem">
 			{/* {console.log(getCurrentDay())} */}
 
-			<Card hoverable className="card-custom">
-				<div className="card-content">
-					{/* Render label  */}
-					{renderAdvLabel(ngayTao, luotXem)}
+			<div className="card-content">
+				{/* Render label  */}
+				{renderAdvLabel(ngayTao, luotXem)}
 
-					<div className="card-image">
-						<img src={hinhAnh} alt="" />
-					</div>
-					<div className="card-detail">
-						<p className="title">{tenKhoaHoc}</p>
-						<p className="teacher">
-							Giảng viên: <span>{formatFullName(nguoiTao.hoTen)}</span>
-						</p>
-						<p>
-							Ngày tạo: <span>{ngayTao}</span>{" "}
-						</p>
-						<p>
-							Lượt xem: <span>{luotXem}</span>
-						</p>
-					</div>
+				<div className="card-image" onClick={goToDetail}>
+					<img src={hinhAnh} alt="" />
 				</div>
-			</Card>
+				<div className="card-detail">
+					<p className="title">{tenKhoaHoc}</p>
+					<p className="teacher">
+						Giảng viên:
+						<span>{formatFullName(nguoiTao.hoTen)}</span>
+					</p>
+					<p>
+						Ngày tạo: <span>{ngayTao}</span>{" "}
+					</p>
+					<div className="view-heart">
+						<p>
+							<EyeOutlined /> <span>{luotXem}</span>
+						</p>
+
+						<HeartFilled
+							className={toggleHeart ? "heart active" : "heart"}
+							onClick={changeColor}
+							style={{ fontSize: 18 }}
+						/>
+					</div>
+
+					<h5></h5>
+				</div>
+			</div>
 		</div>
 	);
 }

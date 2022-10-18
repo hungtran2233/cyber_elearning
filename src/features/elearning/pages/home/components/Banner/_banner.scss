@@ -43,6 +43,16 @@
 
 		.search-area {
 		}
+
+		// animation down arrow
+		.down-arrow {
+			position: absolute;
+			top: 150%;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 20%;
+			z-index: 10;
+		}
 	}
 }
 

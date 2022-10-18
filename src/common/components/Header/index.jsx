@@ -131,12 +131,11 @@ function AppHeader() {
 					</div>
 					<div className="mobileHidden">
 						<Anchor targetOffset="65">
-							<Link href="#hero" title="TRANG CHỦ" />
-							<Link href="#about" title="KHÓA HỌC" />
-							<Link href="#feature" title="Features" />
-
-							<Link href="#pricing" title="Pricing" />
-							<Link href="#contact" title="Contact" />
+							<Link href="#banner" title="TRANG CHỦ" />
+							<Link href="#course" title="KHÓA HỌC" />
+							<Link href="#statistic" title="THỐNG KÊ" />
+							<Link href="#review" title="GÓC HỌC VIÊN" />
+							<Link href="#contact" title="LIÊN HỆ" />
 						</Anchor>
 					</div>
 
