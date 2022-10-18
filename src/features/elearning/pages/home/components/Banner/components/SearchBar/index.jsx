@@ -52,7 +52,7 @@ function SearchBar(props) {
 						return (
 							<Link
 								key={item.maKhoaHoc}
-								to={"/detail/" + item.maKhoaHoc}
+								to={"/details/" + item.maKhoaHoc + '/' + item.biDanh }
 								onClick={clearInput}
 							>
 								<div className="search-content">
