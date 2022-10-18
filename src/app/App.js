@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "common/components/Header";
 import Home from "features/elearning/pages/home";
-// import Detail from "features/elearning/pages/details";
+//  import Detail from "features/elearning/pages/details";
 import Detail from "features/elearning/pages/detail";
 import SignIn from "features/authentication/SignIn";
 import SignUp from "features/authentication/SignUp";
