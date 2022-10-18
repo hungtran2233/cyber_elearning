@@ -2,11 +2,13 @@ import {
 	AlertFilled,
 	AndroidFilled,
 	ChromeFilled,
+	DownOutlined,
 	HddFilled,
 	SearchOutlined,
 	SettingFilled,
 	SlackCircleFilled,
 	StarFilled,
+	UpOutlined,
 } from "@ant-design/icons";
 import { Button, Card, Col, Input, Row, Spin } from "antd";
 import { getNumberDistanceDate } from "common/utils/date";
@@ -41,6 +43,39 @@ function CourseCategory(props) {
 	// Get course
 	const [selectedCourseList, setSelectedCourseList] = useState(allCourseList);
 	// console.log(selectedCourseList);
+
+	// show more, show less --- corse
+	const [numOfElement, setNumOfElement] = useState(8);
+	const handleLoadMore = () => {
+		setNumOfElement(numOfElement + 4);
+	};
+	const handleLoadLess = () => {
+		setNumOfElement(numOfElement - 4);
+	};
+	const sliceCourseList = selectedCourseList.slice(0, numOfElement);
+	// console.log(sliceCourseList.length); // 8
+	const renderShowButton = () => {
+		if (selectedCourseList.length <= 8) {
+			return;
+		}
+		if (selectedCourseList.length > 8) {
+			if (selectedCourseList.length === sliceCourseList.length) {
+				return;
+			}
+			return (
+				<>
+					<Button className="show-more" onClick={handleLoadMore}>
+						Xem thêm
+						<DownOutlined />
+					</Button>
+					<Button className="show-less" onClick={handleLoadLess}>
+						Thu gọn
+						<UpOutlined />
+					</Button>
+				</>
+			);
+		}
+	};
 
 	// setting search bar
 	const [query, setQuery] = useState("");
@@ -139,10 +174,10 @@ function CourseCategory(props) {
 	};
 
 	return (
-		<div className="CourseCategory">
+		<div id="course" className="CourseCategory">
 			{/* {console.log(selectedCourseList)} */}
 			<div className="container">
-				<h1 className="title">Danh sách các khóa học tại Bee Academy</h1>
+				<h1 className="title-course">Danh sách các khóa học tại Bee Academy</h1>
 
 				<Row style={{ marginBottom: 20 }}>
 					{/* Sort by Name  */}
@@ -198,7 +233,7 @@ function CourseCategory(props) {
 					</Col>
 
 					{/* Search course by Name  */}
-					<Col xs={8} sm={8} md={10} lg={10} xl={10}>
+					<Col xs={24} sm={8} md={10} lg={10} xl={10}>
 						<div className="query-search">
 							<Input
 								onChange={(e) => {
@@ -262,7 +297,7 @@ function CourseCategory(props) {
 					{/* Course  */}
 					<Col xs={16} sm={16} md={20} lg={20} xl={20}>
 						<div className="course-list">
-							{selectedCourseList
+							{sliceCourseList
 								?.filter((course) =>
 									course.tenKhoaHoc.toLowerCase().includes(query)
 								)
@@ -274,6 +309,8 @@ function CourseCategory(props) {
 									);
 								})}
 						</div>
+
+						<div className="load-content">{renderShowButton()}</div>
 					</Col>
 				</Row>
 			</div>

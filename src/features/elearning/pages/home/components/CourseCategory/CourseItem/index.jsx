@@ -58,7 +58,15 @@ function CourseItem(props) {
 				{renderAdvLabel(ngayTao, luotXem)}
 
 				<div className="card-image" onClick={goToDetail}>
-					<img src={hinhAnh} alt="" />
+					<img
+						src={hinhAnh}
+						alt="hinh anh"
+						onError={({ currentTarget }) => {
+							currentTarget.onerror = null; // prevents looping
+							currentTarget.src =
+								"https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png";
+						}}
+					/>
 				</div>
 				<div className="card-detail">
 					<p className="title">{tenKhoaHoc}</p>

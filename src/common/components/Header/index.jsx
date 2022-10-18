@@ -122,7 +122,13 @@ function AppHeader() {
 		<Header>
 			<div className="container">
 				<div className="header-master">
-					<div className="logo-box" onClick={() => history.push("/")}>
+					<div
+						className="logo-box"
+						onClick={() => {
+							history.push("/");
+							window.scrollTo(0, 0);
+						}}
+					>
 						<div className="logo-icon">
 							<img src={mainLogo} alt="" />
 						</div>

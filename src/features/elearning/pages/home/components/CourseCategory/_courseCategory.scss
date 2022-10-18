@@ -1,12 +1,23 @@
 // reset padding card
 
 .CourseCategory {
-	.title {
+	padding-top: 40px;
+	// background-image: url(../../../../../../assets/img/background/pic2.png);
+	// background-size: 100%;
+	// background-position: top center;
+	// background-repeat: no-repeat;
+	// overflow: hidden;
+	.title-course {
 		text-align: center;
+		margin-bottom: 20px;
+		font-weight: bold;
 	}
 
 	.query-search {
 		text-align: right;
+		.ant-input-affix-wrapper {
+			border: 1px solid rgb(145, 142, 142);
+		}
 	}
 
 	.category-list {
@@ -46,15 +57,39 @@
 			margin-bottom: 40px;
 		}
 	}
+
+	//////
+	.load-content {
+		text-align: center;
+		margin-top: 10px;
+
+		.show-more {
+			margin-right: 10px;
+			background-color: #18c1f2;
+			color: white;
+		}
+
+		.show-less {
+			background-color: #b276f8;
+			color: white;
+		}
+	}
 }
 
 // responsive
 @media only screen and (max-width: 768px) {
 	.CourseCategory {
-		padding: 0 20px;
+		padding: 20px 20px;
 		.course-list {
 			.item-content {
 				width: 50%;
+			}
+		}
+
+		.query-search {
+			margin-top: 10px;
+			.ant-input-affix-wrapper {
+				width: 100% !important;
 			}
 		}
 	}
@@ -62,8 +97,10 @@
 
 @media only screen and (max-width: 576px) {
 	.CourseCategory {
-		padding: 0 20px;
+		padding: 20px 20px;
 		.course-list {
+			height: 420px;
+			overflow-y: auto;
 			.item-content {
 				width: 100%;
 				margin-bottom: 5px;

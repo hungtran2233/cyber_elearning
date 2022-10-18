@@ -1,0 +1,32 @@
+.BannerDetail {
+	padding-top: 80px;
+	padding-bottom: 50px;
+	height: 100px;
+	background-color: #74ebd5;
+	background-image: linear-gradient(90deg, #74ebd5 0%, #9face6 100%);
+	position: relative;
+
+	// &::before {
+	// 	content: "";
+	// 	position: absolute;
+	// 	left: 0;
+	// 	right: 0;
+	// 	top: 0;
+	// 	bottom: 0;
+	// 	background: rgba(0, 0, 0, 0.2);
+	// }
+
+	/////
+	.bread-crumb {
+		display: flex;
+		align-items: center;
+
+		.home-icon {
+			margin-right: 10px;
+			cursor: pointer;
+			i {
+				font-size: 25px;
+			}
+		}
+	}
+}
