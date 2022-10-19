@@ -3,17 +3,19 @@ import instance from "api/instance";
 
 export const courseRegisterAction = createAsyncThunk(
 	"payment/courseRegister",
-	async (courseId, userName) => {
+	async (requestParams) => {
 		try {
 			const res = await instance.request({
 				url: "/api/QuanLyKhoaHoc/DangKyKhoaHoc",
 				method: "POST",
-				params: {
-					maKhoaHoc: courseId,
-					taiKhoan: userName,
+				data: {
+					maKhoaHoc: requestParams.courseId,
+					taiKhoan: requestParams.taiKhoan,
 				},
 			});
 			console.log(res);
-		} catch (err) {}
+		} catch (err) {
+			console.log(err);
+		}
 	}
 );

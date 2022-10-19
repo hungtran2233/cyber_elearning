@@ -16,7 +16,7 @@ const { Link } = Anchor;
 function AppHeader() {
 	const history = useHistory();
 	const dispatch = useDispatch();
-	const { cartTotalQuantity } = useSelector((state) => state.eLearningCart);
+	const arrItem = useSelector((state) => state.eLearningCart.cartItems);
 
 	// console.log(cartTotalQuantity);
 
@@ -159,7 +159,7 @@ function AppHeader() {
 						<div className="cart" onClick={() => history.push("/cart")}>
 							<i className="fas fa-shopping-cart"></i>
 
-							<span className="total-quantity">{cartTotalQuantity}</span>
+							<span className="total-quantity">{arrItem.length}</span>
 						</div>
 
 						{renderUserInfo()}

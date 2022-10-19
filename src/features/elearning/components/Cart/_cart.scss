@@ -95,10 +95,17 @@
 		}
 	}
 
-	.cart-product-total-price {
-		padding-right: 0.5rem;
-		justify-self: right;
-		font-weight: 700;
+	.btn-register {
+		text-align: center;
+		padding: 5px 0;
+		background: #4b70e2;
+		color: white;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: all 0.5s;
+		&:hover {
+			opacity: 0.8;
+		}
 	}
 }
 
@@ -126,6 +133,20 @@
 			background-color: #fc3333;
 			color: white;
 			border: 0.5px solid #fc3333;
+		}
+	}
+
+	.continue-shopping {
+		a {
+			padding: 5px 20px;
+			border: 1px solid rgb(185, 184, 184);
+			border-radius: 5px;
+			transition: all 0.5s;
+
+			&:hover {
+				color: black;
+				border: 1px solid black;
+			}
 		}
 	}
 }

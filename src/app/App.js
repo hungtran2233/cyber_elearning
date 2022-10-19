@@ -33,7 +33,7 @@ function App() {
 					<Route path="/cart" component={Cart} exact />
 					<Route path="/signin" component={SignIn} />
 					<Route path="/signup" component={SignUp} />
-					<Route path="/payment" component={Payment} />
+					<Route path="/payment/:id" component={Payment} exact />
 					<Route path="/profile" component={Profile} />
 				</Switch>
 				<Footer />

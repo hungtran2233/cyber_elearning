@@ -39,7 +39,7 @@ const Cart = () => {
 		<div className="CartContent">
 			<div className="container">
 				<h2>Giỏ hàng</h2>
-				{cart.cartItems.length === 0 ? (
+				{cart.cartItems?.length === 0 ? (
 					<div className="cart-empty">
 						<p>Giỏ hàng của bạn đang trống</p>
 						<div className="start-shopping">
@@ -66,12 +66,12 @@ const Cart = () => {
 						<div className="titles">
 							<h3 className="product-title">Khóa học</h3>
 							<h3 className="price">Giá</h3>
-							<h3 className="quantity">Số lượng</h3>
-							<h3 className="total">Tổng </h3>
+							<h3 className="quantity">Ngày tạo</h3>
+							<h3 className="total">Hành động </h3>
 						</div>
 						<div className="cart-items">
 							{cart.cartItems &&
-								cart.cartItems.map((cartItem, index) => (
+								cart.cartItems?.map((cartItem, index) => (
 									<div className="cart-item" key={index}>
 										<div className="cart-product">
 											<img
@@ -92,25 +92,18 @@ const Cart = () => {
 											</div>
 										</div>
 										<div className="cart-product-price">${price}</div>
-										<div className="cart-product-quantity">
-											<button
-												onClick={() =>
-													handleDecreaseCart(cartItem)
-												}
-											>
-												-
-											</button>
-											<div className="count">
-												{cartItem.cartQuantity}
-											</div>
-											<button
-												onClick={() => handleAddToCart(cartItem)}
-											>
-												+
-											</button>
+										<div className="course-date">
+											{cartItem.ngayTao}
 										</div>
-										<div className="cart-product-total-price">
-											${price * cartItem.cartQuantity}
+										<div
+											className="btn-register"
+											onClick={() => {
+												history.push(
+													"/payment/" + cartItem.maKhoaHoc
+												);
+											}}
+										>
+											Đăng ký
 										</div>
 									</div>
 								))}
@@ -126,16 +119,14 @@ const Cart = () => {
 								<div className="subtotal">
 									<span>Tổng tiền</span>
 									<span className="amount">
-										${cart.cartTotalAmount}
+										${cart.cartItems?.length * price}
 									</span>
 								</div>
 								<p>
 									Chi phí được tính khi bạn nhận được mã kích hoạt khóa
 									học
 								</p>
-								<button onClick={() => history.push("/payment")}>
-									Đăng kí ngay
-								</button>
+
 								<div className="continue-shopping">
 									<Link to="/">
 										<svg

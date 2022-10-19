@@ -95,10 +95,26 @@ const cartSlice = createSlice({
 			state.cartTotalQuantity = quantity;
 			state.cartTotalAmount = total;
 		},
+
+		// remove 1 item from cart (no confirm)
+		removeItemFromCart(state, action) {
+			const nextCartItems = state.cartItems.filter(
+				(cartItem) => cartItem.maKhoaHoc !== action.payload.maKhoaHoc
+			);
+
+			state.cartItems = nextCartItems;
+			localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+		},
 	},
 });
 
-export const { addToCart, removeFromCart, decreaseCart, clearCart, getTotals } =
-	cartSlice.actions;
+export const {
+	addToCart,
+	removeFromCart,
+	decreaseCart,
+	clearCart,
+	getTotals,
+	removeItemFromCart,
+} = cartSlice.actions;
 
 export default cartSlice;
