@@ -10,15 +10,13 @@ import {
 	StarFilled,
 	UpOutlined,
 } from "@ant-design/icons";
-import { Button, Card, Col, Input, Row, Spin } from "antd";
-import { getNumberDistanceDate } from "common/utils/date";
-import { formatFullName } from "common/utils/formatFullName";
+import { Button, Card, Col, Input, Pagination, Row, Spin } from "antd";
+
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Slider from "react-slick";
 import { fetchCourseAction } from "../../utils/homeAction";
 import CourseItem from "./CourseItem";
 
@@ -44,36 +42,17 @@ function CourseCategory(props) {
 	const [selectedCourseList, setSelectedCourseList] = useState(allCourseList);
 	// console.log(selectedCourseList);
 
-	// show more, show less --- corse
-	const [numOfElement, setNumOfElement] = useState(8);
-	const handleLoadMore = () => {
-		setNumOfElement(numOfElement + 4);
-	};
-	const handleLoadLess = () => {
-		setNumOfElement(numOfElement - 4);
-	};
-	const sliceCourseList = selectedCourseList.slice(0, numOfElement);
-	// console.log(sliceCourseList.length); // 8
-	const renderShowButton = () => {
-		if (selectedCourseList.length <= 8) {
-			return;
-		}
-		if (selectedCourseList.length > 8) {
-			if (selectedCourseList.length === sliceCourseList.length) {
-				return;
-			}
-			return (
-				<>
-					<Button className="show-more" onClick={handleLoadMore}>
-						Xem thêm
-						<DownOutlined />
-					</Button>
-					<Button className="show-less" onClick={handleLoadLess}>
-						Thu gọn
-						<UpOutlined />
-					</Button>
-				</>
-			);
+	// ==== Pagination =====
+	const [minValue, setMinValue] = useState(0);
+	const [maxValue, setMaxValue] = useState(8);
+
+	const handleChange = (value) => {
+		if (value <= 1) {
+			setMinValue(0);
+			setMaxValue(8);
+		} else {
+			setMinValue(maxValue);
+			setMaxValue(value * 8);
 		}
 	};
 
@@ -172,6 +151,8 @@ function CourseCategory(props) {
 		setSortView("Lượt xem");
 		setSortDate("Ngày tạo");
 	};
+
+	// handleChange page Pagination
 
 	return (
 		<div id="course" className="CourseCategory">
@@ -297,7 +278,8 @@ function CourseCategory(props) {
 					{/* Course  */}
 					<Col xs={16} sm={16} md={20} lg={20} xl={20}>
 						<div className="course-list">
-							{sliceCourseList
+							{selectedCourseList
+								.slice(minValue, maxValue)
 								?.filter((course) =>
 									course.tenKhoaHoc.toLowerCase().includes(query)
 								)
@@ -310,7 +292,15 @@ function CourseCategory(props) {
 								})}
 						</div>
 
-						<div className="load-content">{renderShowButton()}</div>
+						{/* Pagination  */}
+						<div className="pagination-bar">
+							<Pagination
+								defaultCurrent={1}
+								defaultPageSize={8}
+								onChange={handleChange}
+								total={selectedCourseList.length}
+							/>
+						</div>
 					</Col>
 				</Row>
 			</div>

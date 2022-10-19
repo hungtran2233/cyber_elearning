@@ -50,9 +50,9 @@ function Home() {
 	return (
 		<div className="Home">
 			{/* <div style={{ paddingTop: 40 }}>ranh gioi</div> */}
-			{/* <Banner allCourseList={allCourseList} /> */}
+			<Banner allCourseList={allCourseList} />
 			<CourseCategory category={category} allCourseList={allCourseList} />
-			{/* <Review /> */}
+			<Review />
 		</div>
 	);
 }

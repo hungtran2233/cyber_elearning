@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchProfileAction } from "features/authentication/authAction";
 import ScrollToTop from "common/utils/scrollToTop";
+import Cart from "features/elearning/components/Cart";
 
 function App() {
 	const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
 				<Switch>
 					<Route path="/" component={Home} exact />
 					<Route path="/details/:id/:slug" component={Detail} exact />
+					<Route path="/cart" component={Cart} exact />
 					<Route path="/signin" component={SignIn} />
 					<Route path="/signup" component={SignUp} />
 				</Switch>

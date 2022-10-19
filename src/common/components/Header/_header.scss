@@ -160,6 +160,25 @@
 
 		.cart {
 			margin: 0 30px;
+			position: relative;
+			cursor: pointer;
+			i {
+				font-size: 24px;
+				// padding: 8px;
+				// border: 1px solid grey;
+				// border-radius: 50%;
+			}
+
+			.total-quantity {
+				position: absolute;
+				top: -12px;
+				left: 15px;
+				background: red;
+				padding: 1px 3px;
+				border-radius: 50%;
+				color: white;
+				font-size: 12px;
+			}
 		}
 
 		.btn-login {

@@ -4,7 +4,8 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
-import BannerDetail from "./components/BannerDetail";
+import BodyDetail from "./components/BodyDetail";
+import BreadCrumb from "./components/BreadCrumb";
 import { fetchCourseDetailAction } from "./utils/detailAction";
 
 function Detail() {
@@ -34,7 +35,8 @@ function Detail() {
 	return (
 		<div className="ELearningDetail">
 			{/* <div style={{ paddingTop: 60 }}>ranh gioi</div> */}
-			<BannerDetail courseDetail={courseDetail} />
+			<BreadCrumb courseDetail={courseDetail} />
+			<BodyDetail courseDetail={courseDetail} />
 		</div>
 	);
 }

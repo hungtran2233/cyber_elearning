@@ -42,6 +42,6 @@ export const fetchProfileAction = createAsyncThunk("auth/fetchProfile", async ()
 		});
 		return res.data;
 	} catch (err) {
-		console.log("Chua dang nhap");
+		// console.log("Chua dang nhap");
 	}
 });

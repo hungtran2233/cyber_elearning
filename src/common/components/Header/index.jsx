@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Anchor, Drawer, Button, Menu, Dropdown, Space } from "antd";
 import { Header } from "antd/lib/layout/layout";
 import mainLogo from "assets/img/icon/logo-bee.png";
@@ -16,6 +16,8 @@ const { Link } = Anchor;
 function AppHeader() {
 	const history = useHistory();
 	const dispatch = useDispatch();
+	const { cartTotalQuantity } = useSelector((state) => state.eLearningCart);
+	// console.log(cartTotalQuantity);
 
 	// setting responsive
 	const [visible, setVisible] = useState(false);
@@ -153,8 +155,10 @@ function AppHeader() {
 							<div className="country">English</div>
 						</div>
 
-						<div className="cart">
+						<div className="cart" onClick={() => history.push("/cart")}>
 							<i className="fas fa-shopping-cart"></i>
+
+							<span className="total-quantity">{cartTotalQuantity}</span>
 						</div>
 
 						{renderUserInfo()}

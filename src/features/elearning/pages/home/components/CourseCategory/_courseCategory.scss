@@ -1,7 +1,7 @@
 // reset padding card
 
 .CourseCategory {
-	padding-top: 40px;
+	padding: 40px 0;
 	// background-image: url(../../../../../../assets/img/background/pic2.png);
 	// background-size: 100%;
 	// background-position: top center;
@@ -59,20 +59,9 @@
 	}
 
 	//////
-	.load-content {
+	.pagination-bar {
 		text-align: center;
-		margin-top: 10px;
-
-		.show-more {
-			margin-right: 10px;
-			background-color: #18c1f2;
-			color: white;
-		}
-
-		.show-less {
-			background-color: #b276f8;
-			color: white;
-		}
+		margin-bottom: 30px;
 	}
 }
 

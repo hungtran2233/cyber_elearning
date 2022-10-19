@@ -1,0 +1,87 @@
+.BodyDetail {
+	padding: 40px 0;
+	background: rgb(249, 249, 249);
+	.course-image {
+		img {
+			width: 100%;
+			object-fit: cover;
+			border: 1px solid grey;
+		}
+	}
+
+	.course-content {
+		margin-left: 30px;
+		h3 {
+			i {
+				margin-right: 10px;
+			}
+			span {
+				margin-right: 15px;
+			}
+		}
+	}
+
+	.cart-content {
+		border-radius: 5px;
+		background: #fff;
+		padding: 20px;
+		box-sizing: border-box;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.3);
+
+		.register-now {
+			background: #df322f;
+			border-radius: 5px;
+			padding: 14px 20px;
+			display: inline-block;
+			width: 100%;
+			color: #fff;
+			font-size: 18px;
+			font-weight: bold;
+			text-align: center;
+			margin-bottom: 10px;
+			text-transform: uppercase;
+			cursor: pointer;
+		}
+
+		.add-to-cart {
+			background: #0bb732;
+			color: #fff !important;
+			border-radius: 5px;
+			padding: 10px 20px;
+			display: inline-block;
+			width: 100%;
+			font-size: 18px;
+			font-weight: bold;
+			text-align: center;
+			cursor: pointer;
+
+			i {
+				margin-right: 10px;
+			}
+		}
+	}
+
+	//// row -> description
+	.tab-content {
+		.ant-tabs-nav {
+			border-bottom: 1px solid grey;
+		}
+
+		.ant-tabs-content-holder {
+			background: white;
+			padding: 10px 0;
+		}
+
+		.ant-tabs-tab-btn {
+			margin-left: 5px;
+		}
+
+		.ant-tabs-content {
+			font-size: 16px;
+		}
+	}
+
+	.teacher-detail {
+		font-size: 16px;
+	}
+}
