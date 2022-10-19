@@ -17,6 +17,7 @@ function AppHeader() {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const { cartTotalQuantity } = useSelector((state) => state.eLearningCart);
+
 	// console.log(cartTotalQuantity);
 
 	// setting responsive

@@ -13,6 +13,8 @@ import { useEffect } from "react";
 import { fetchProfileAction } from "features/authentication/authAction";
 import ScrollToTop from "common/utils/scrollToTop";
 import Cart from "features/elearning/components/Cart";
+import Profile from "features/authentication/Profile";
+import Payment from "features/elearning/pages/payment";
 
 function App() {
 	const dispatch = useDispatch();
@@ -31,6 +33,8 @@ function App() {
 					<Route path="/cart" component={Cart} exact />
 					<Route path="/signin" component={SignIn} />
 					<Route path="/signup" component={SignUp} />
+					<Route path="/payment" component={Payment} />
+					<Route path="/profile" component={Profile} />
 				</Switch>
 				<Footer />
 			</Router>

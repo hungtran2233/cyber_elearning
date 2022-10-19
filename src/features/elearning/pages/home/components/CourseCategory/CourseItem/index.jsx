@@ -69,7 +69,9 @@ function CourseItem(props) {
 					/>
 				</div>
 				<div className="card-detail">
-					<p className="title">{tenKhoaHoc}</p>
+					<p className="title" onClick={goToDetail}>
+						{tenKhoaHoc}
+					</p>
 					<p className="teacher">
 						Giảng viên:
 						<span>{formatFullName(nguoiTao.hoTen)}</span>

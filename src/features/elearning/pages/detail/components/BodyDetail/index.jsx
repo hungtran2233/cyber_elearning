@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../../utils/cartSlice";
 import { useHistory } from "react-router-dom";
+import { Button, message, Space } from "antd";
 
 function BodyDetail(props) {
 	const {
@@ -57,6 +58,11 @@ function BodyDetail(props) {
 		{ label: "Giảng viên", key: "item-2", children: renderTeacher() },
 	];
 
+	// setting message
+	const success = () => {
+		message.success("Thêm vào giỏ hàng thành công !");
+	};
+
 	return (
 		<div className="BodyDetail">
 			<div className="container">
@@ -105,16 +111,25 @@ function BodyDetail(props) {
 
 					<Col xs={24} sm={24} md={8} lg={8} xl={8}>
 						<div className="cart-content">
-							<div className="register-now">ĐĂNG KÝ NGAY</div>
+							{/* <div
+								className="register-now"
+								onClick={() => history.push("/payment")}
+							>
+								ĐĂNG KÝ NGAY
+							</div> */}
 							<div
 								className="add-to-cart"
 								onClick={() => {
 									history.push("/cart");
 									handleAddToCart();
+									success();
 								}}
 							>
 								<i className="fa-solid fa-cart-plus"></i>
 								Thêm vào giỏ hàng
+							</div>
+							<div className="note">
+								Vui lòng vào giỏ hàng để tiến hành đăng kí khóa học !
 							</div>
 						</div>
 					</Col>

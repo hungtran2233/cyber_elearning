@@ -8,13 +8,14 @@ import {
 	removeFromCart,
 } from "../../utils/cartSlice";
 
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./_cart.scss";
 import { price } from "features/elearning/utils/tempPrice";
 
 const Cart = () => {
 	const cart = useSelector((state) => state.eLearningCart);
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	useEffect(() => {
 		dispatch(getTotals());
@@ -132,7 +133,9 @@ const Cart = () => {
 									Chi phí được tính khi bạn nhận được mã kích hoạt khóa
 									học
 								</p>
-								<button>Đăng kí ngay</button>
+								<button onClick={() => history.push("/payment")}>
+									Đăng kí ngay
+								</button>
 								<div className="continue-shopping">
 									<Link to="/">
 										<svg
