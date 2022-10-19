@@ -1,4 +1,5 @@
 .details {
+  position: relative;
   font-family: "SF Pro Display";
   .fa120471{
     width: 100%;
@@ -8,7 +9,7 @@
   .header__details {
     height: max-content;
     padding: 16px 0px 32px 112px;
-    position: relative;
+    // position: relative;
     background: linear-gradient(
       191deg,
       rgba(255, 192, 67, 0) 5.02%,
