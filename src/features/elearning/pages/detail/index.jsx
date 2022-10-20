@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 import BodyDetail from "./components/BodyDetail";
 import BreadCrumb from "./components/BreadCrumb";
+import RelatedCourse from "./components/RelatedCourse";
 import { fetchCourseDetailAction } from "./utils/detailAction";
 
 function Detail() {
@@ -22,7 +23,7 @@ function Detail() {
 
 	useEffect(() => {
 		fetchCourseDetail();
-	}, []);
+	}, [courseId]);
 
 	if (!courseDetail) {
 		return (
@@ -37,6 +38,7 @@ function Detail() {
 			{/* <div style={{ paddingTop: 60 }}>ranh gioi</div> */}
 			<BreadCrumb courseDetail={courseDetail} />
 			<BodyDetail courseDetail={courseDetail} />
+			<RelatedCourse courseDetail={courseDetail} />
 		</div>
 	);
 }

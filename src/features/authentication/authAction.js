@@ -45,3 +45,40 @@ export const fetchProfileAction = createAsyncThunk("auth/fetchProfile", async ()
 		// console.log("Chua dang nhap");
 	}
 });
+
+//update profile
+export const updateUserAction = createAsyncThunk("auth/updateUser", async (user) => {
+	try {
+		const res = await instance.request({
+			url: "/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+			method: "PUT",
+			data: user,
+		});
+
+		console.log(res.data);
+		return res.data;
+	} catch (err) {}
+});
+
+// destroy course
+export const destroyCourseAction = createAsyncThunk(
+	"auth/destroyCourse",
+	async (userCourse) => {
+		console.log(userCourse);
+		try {
+			const res = await instance.request({
+				url: "/api/QuanLyKhoaHoc/HuyGhiDanh",
+				method: "POST",
+				data: {
+					maKhoaHoc: userCourse.courseId,
+					taiKhoan: userCourse.userName,
+				},
+			});
+
+			console.log(res.data);
+			return res.data;
+		} catch (err) {
+			console.log(err);
+		}
+	}
+);

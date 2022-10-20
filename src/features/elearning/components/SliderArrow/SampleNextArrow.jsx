@@ -8,7 +8,7 @@ function SampleNextArrow(props) {
 			style={{
 				...style,
 				display: "block",
-				transform: "translate(-320%, -400%)",
+				transform: "translate(-280%, -200%)",
 				zIndex: 5,
 			}}
 			onClick={onClick}

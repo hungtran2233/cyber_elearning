@@ -8,7 +8,7 @@ function SamplePrevArrow(props) {
 			style={{
 				...style,
 				display: "block",
-				transform: "translate(180%, -400%)",
+				transform: "translate(180%, -200%)",
 				zIndex: 5,
 			}}
 			onClick={onClick}

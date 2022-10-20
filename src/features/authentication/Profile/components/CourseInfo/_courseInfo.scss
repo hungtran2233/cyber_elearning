@@ -1,0 +1,45 @@
+.CourseInfo {
+	margin-left: 20px;
+	padding: 20px 40px;
+	border: 1px solid rgb(207, 207, 207);
+	border-radius: 10px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+	h2 {
+		text-align: center;
+	}
+
+	.course-item {
+		display: flex;
+		align-items: center;
+		padding: 15px;
+		margin-bottom: 15px;
+		border: 1px solid rgb(191, 191, 191);
+		border-radius: 10px;
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 3px;
+		.course-img {
+			width: 15%;
+			img {
+				width: 80%;
+				object-fit: cover;
+			}
+		}
+
+		.description {
+			width: 40%;
+			.course-name {
+				font-weight: bold;
+			}
+		}
+
+		.show-detail {
+			width: 30%;
+			text-align: center;
+		}
+
+		.destroy-course {
+			width: 25%;
+			text-align: center;
+		}
+	}
+}

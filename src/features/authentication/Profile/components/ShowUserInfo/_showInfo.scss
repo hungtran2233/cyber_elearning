@@ -1,0 +1,56 @@
+.ShowUserInfo {
+	// show content
+	.show-content {
+		h2 {
+			text-align: center;
+			padding: 5px 0;
+		}
+		padding: 10px 60px 40px 60px;
+		border: 1px solid rgb(188, 188, 188);
+		border-radius: 10px;
+		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+		.btn-handle {
+			text-align: right;
+			margin-top: 20px;
+			.btn-submit {
+				margin-right: 10px;
+			}
+		}
+	}
+
+	// update content
+	.update-content {
+		h2 {
+			text-align: center;
+			padding: 5px 0;
+		}
+		padding: 10px 60px 40px 60px;
+		border: 1px solid rgb(188, 188, 188);
+		border-radius: 10px;
+		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+		.btn-handle {
+			text-align: right;
+			margin-top: 20px;
+			.btn-submit {
+				margin-right: 10px;
+			}
+		}
+	}
+
+	.form {
+		.form-group {
+			margin-bottom: 10px;
+			label {
+				font-weight: bold;
+				margin-bottom: 10px;
+			}
+
+			.input {
+				border: 1px solid rgb(206, 205, 205);
+				box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 5px;
+			}
+		}
+	}
+}

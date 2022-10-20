@@ -231,6 +231,7 @@ function CourseCategory(props) {
 					</Col>
 				</Row>
 
+				{/* Display  */}
 				<Row>
 					{/* Category  */}
 					<Col xs={8} sm={8} md={4} lg={4} xl={4}>

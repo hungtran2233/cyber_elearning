@@ -1,3 +1,41 @@
 .Profile {
 	padding: 80px 0;
+
+	.left-content {
+		margin-right: 20px;
+		padding: 20px;
+		border: 1px solid rgb(202, 202, 202);
+		border-radius: 10px;
+		text-align: center;
+		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+		.user {
+			.image {
+				padding: 0 40px;
+				img {
+					width: 100%;
+					object-fit: cover;
+					border-radius: 50%;
+				}
+			}
+			.user-name {
+				color: rgb(85, 143, 250);
+				font-size: 16px;
+				font-weight: bold;
+			}
+		}
+
+		////////
+		.option-select {
+			margin-top: 20px;
+			.option-user-info {
+				padding: 5px 0;
+			}
+		}
+	}
+}
+
+.active {
+	background: rgb(85, 143, 250);
+	color: white;
 }

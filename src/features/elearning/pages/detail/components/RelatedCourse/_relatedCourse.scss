@@ -1,0 +1,15 @@
+.RelatedCourse {
+	.container {
+		overflow-x: hidden;
+		overflow-y: hidden;
+
+		.CourseItem {
+			padding: 10px;
+			border: none;
+			.card-content {
+				border: 1px solid rgb(183, 182, 182);
+				border-radius: 5px;
+			}
+		}
+	}
+}

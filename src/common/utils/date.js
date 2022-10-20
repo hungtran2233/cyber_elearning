@@ -41,3 +41,8 @@ export const getNumberDistanceDate = (date) => {
 	);
 	return distance;
 };
+
+export const formatDayMonthYear = (d) => {
+	const date = format(new Date(d), "dd/MM/yyyy");
+	return date;
+};

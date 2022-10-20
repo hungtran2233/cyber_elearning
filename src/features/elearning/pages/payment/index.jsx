@@ -4,6 +4,8 @@ import { Col, Row, Spin } from "antd";
 import CourseDetail from "./components/CourseDetail";
 import UserDetail from "./components/UserDetail";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
 
 function Payment() {
 	const cart = useSelector((state) => state.eLearningCart);

@@ -6,10 +6,13 @@ import "./_bodyDetail.scss";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../../utils/cartSlice";
-import { useHistory } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 import { Button, message, Space } from "antd";
 
 function BodyDetail(props) {
+	const dispatch = useDispatch();
+	const history = useHistory();
+
 	const {
 		maKhoaHoc,
 		tenKhoaHoc,
@@ -22,9 +25,6 @@ function BodyDetail(props) {
 		danhMucKhoaHoc,
 	} = props.courseDetail;
 	// console.log(props.courseDetail);
-
-	const dispatch = useDispatch();
-	const history = useHistory();
 
 	// cart
 	const handleAddToCart = () => {
