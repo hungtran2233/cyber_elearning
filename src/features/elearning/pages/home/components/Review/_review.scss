@@ -1,4 +1,5 @@
 .review{
+  margin-bottom: 50px;
     margin-top: 160px;
     background-color: #f6f7fc;
     background-repeat: no-repeat;
@@ -83,4 +84,70 @@
 }
 .ant-tabs-ink-bar.ant-tabs-ink-bar-animated {
   display: none;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.swiperResponsive{
+  height: 200px;
+  display: none;
+  .coverResponsive{
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 50px;
+    .imageResponsve{
+
+      .imgReponsive{
+        border-radius: 50%;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 576px){
+  .swiperResponsive{
+    .coverResponsive{
+      height: 450px;
+    }
+  }
+ 
+}
+
+@media only screen and (max-width: 992px) {
+	.tabResponsive{
+    display: none;
+  }
+  .swiperResponsive{
+    display: block;
+  }
 }

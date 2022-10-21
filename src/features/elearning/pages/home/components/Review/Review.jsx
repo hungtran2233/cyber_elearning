@@ -1,6 +1,11 @@
 import { Col, Row, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "./_review.scss";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Pagination, Navigation, Autoplay } from "swiper";
 import reivew1 from "assets/img/user/testimonial-1.jpg";
 import reivew2 from "assets/img/user/testimonial-2.jpg";
 import reivew3 from "assets/img/user/testimonial-3.jpg";
@@ -53,6 +58,7 @@ const Review = () => {
       } else setActiveKey(activeKey + 1);
     }, 2500);
     return () => {
+      //clear time out
       clearTimeout(autoClick);
     };
   });
@@ -69,10 +75,9 @@ const Review = () => {
       >
         Đánh Giá Của Học Viên
       </h1>
+      <div className="tabResponsive">
       <Tabs
-      
         onTabClick={(key) => {
-        
           setActiveKey(key);
         }}
         activeKey={activeKey}
@@ -93,6 +98,43 @@ const Review = () => {
           };
         })}
       />
+      </div>
+      <div>
+        <Swiper
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+            type: "progressbar",
+          }}
+          navigation={true}
+          modules={[Pagination, Navigation, Autoplay]}
+          className="mySwiper"
+        >
+          {dataReview.map((item) => {
+            return (
+              <SwiperSlide className="swiperResponsive" key={item.id}>
+                <div className="coverResponsive container">
+                <div className="contentResponsve">
+                  <strong style={{ textTransform: "uppercase" }}>
+                  <i className="fas fa-quote-left"/> {item.content} <i className="fas fa-quote-right"/>
+                  </strong>
+                  <h3 style={{ color: "#FD4766", fontWeight: "600" }}>
+                    {item.name}
+                  </h3>
+                </div>
+                <div className="imageResponsve">
+                  <img className="imgReponsive" src={item.image} />
+                </div>
+                </div>
+              
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </div>
     </div>
   );
 };

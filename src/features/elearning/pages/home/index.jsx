@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./_home.scss";
 import Review from "./components/Review/Review";
+import Counter from "./components/Counter/Counter";
 
 function Home() {
 	const dispatch = useDispatch();
@@ -53,6 +54,7 @@ function Home() {
 			<Banner allCourseList={allCourseList} />
 			<CourseCategory category={category} allCourseList={allCourseList} />
 			<Review />
+			<Counter/>
 		</div>
 	);
 }
