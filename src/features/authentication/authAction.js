@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import instance from "api/instance";
+import Swal from "sweetalert2";
 
 // Sign Up
 export const signUpAction = createAsyncThunk("auth/signUp", async (user) => {
@@ -55,27 +56,60 @@ export const updateUserAction = createAsyncThunk("auth/updateUser", async (user)
 			data: user,
 		});
 
-		console.log(res.data);
 		return res.data;
 	} catch (err) {}
 });
+
+// register course
+export const courseRegisterAction = createAsyncThunk(
+	"payment/courseRegister",
+	async (requestParams) => {
+		try {
+			const res = await instance.request({
+				url: "/api/QuanLyKhoaHoc/DangKyKhoaHoc",
+				method: "POST",
+				data: {
+					maKhoaHoc: requestParams.courseId,
+					taiKhoan: requestParams.taiKhoan,
+				},
+			});
+			Swal.fire({
+				position: "center",
+				icon: "success",
+				title: "Đăng ký thành công !",
+				text: "Let'go !",
+				showConfirmButton: false,
+				timer: 1500,
+			});
+			// console.log(res);
+			return res.data;
+		} catch (err) {
+			Swal.fire({
+				icon: "info",
+				title: "Không thành công !",
+				text: err.response.data,
+			});
+
+			// console.log(err.response.data);
+		}
+	}
+);
 
 // destroy course
 export const destroyCourseAction = createAsyncThunk(
 	"auth/destroyCourse",
 	async (userCourse) => {
-		console.log(userCourse);
 		try {
 			const res = await instance.request({
 				url: "/api/QuanLyKhoaHoc/HuyGhiDanh",
 				method: "POST",
 				data: {
 					maKhoaHoc: userCourse.courseId,
-					taiKhoan: userCourse.userName,
+					taiKhoan: userCourse.userId,
 				},
 			});
 
-			console.log(res.data);
+			// console.log(res.data);
 			return res.data;
 		} catch (err) {
 			console.log(err);

@@ -1,11 +1,13 @@
 import { Spin } from "antd";
+import "./_relatedCourse.scss";
 import CourseItem from "features/elearning/pages/home/components/CourseCategory/CourseItem";
 import React from "react";
+import { fetchCourseByCategoryAction } from "../../utils/detailAction";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { fetchCourseByCategoryAction } from "../../utils/detailAction";
-import "./_relatedCourse.scss";
 import SampleNextArrow from "features/elearning/components/SliderArrow/SampleNextArrow";
 import SamplePrevArrow from "features/elearning/components/SliderArrow/SamplePrevArrow";
 
@@ -76,6 +78,8 @@ function RelatedCourse(props) {
 			},
 		],
 	};
+
+	// render when item <= 5
 
 	return (
 		<div className="RelatedCourse">

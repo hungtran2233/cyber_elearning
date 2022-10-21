@@ -1,6 +1,6 @@
 import { Button, Col, Input, Row, Spin } from "antd";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./_profile.scss";
 import { Radio, Tabs } from "antd";
 import userImg from "assets/img/user/pic2_3.jpg";
@@ -15,11 +15,32 @@ import {
 import { useHistory } from "react-router-dom";
 import ShowUserInfo from "./components/ShowUserInfo";
 import CourseInfo from "./components/CourseInfo";
+import { fetchProfileAction } from "../authAction";
 
 function Profile() {
+	const dispatch = useDispatch();
+
+	const fetchUserProfile = () => {
+		dispatch(fetchProfileAction());
+	};
+
+	useEffect(() => {
+		fetchUserProfile();
+	}, []);
+
 	const userProfile = useSelector((state) => state.auth.profile);
 
 	const [keySelect, setKeySelect] = useState(1);
+
+	// Active CSS when click
+
+	const toggleActive = (index) => {
+		if (index === keySelect) {
+			return "active";
+		} else {
+			return "non_active";
+		}
+	};
 
 	const handleSelect = (e) => {
 		const key = e.target.getAttribute("data-value"); //1
@@ -32,7 +53,7 @@ function Profile() {
 		}
 
 		if (keySelect === 2) {
-			return <CourseInfo />;
+			return <CourseInfo userId={userProfile.taiKhoan} />;
 		}
 	};
 
@@ -63,7 +84,9 @@ function Profile() {
 
 								<div className="option-select">
 									<div
-										className="option-content"
+										className={
+											"option-content" + " " + toggleActive(1)
+										}
 										data-value={1}
 										onClick={(e) => {
 											handleSelect(e);
@@ -73,7 +96,9 @@ function Profile() {
 										Thông tin tài khoản
 									</div>
 									<div
-										className="option-content"
+										className={
+											"option-content" + " " + toggleActive(2)
+										}
 										data-value={2}
 										onClick={(e) => {
 											handleSelect(e);

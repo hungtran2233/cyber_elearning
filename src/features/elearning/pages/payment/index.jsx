@@ -3,12 +3,20 @@ import "./_payment.scss";
 import { Col, Row, Spin } from "antd";
 import CourseDetail from "./components/CourseDetail";
 import UserDetail from "./components/UserDetail";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useState } from "react";
+import { fetchProfileAction } from "features/authentication/authAction";
 
 function Payment() {
 	const cart = useSelector((state) => state.eLearningCart);
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchProfileAction());
+	}, []);
+
 	const userDetail = useSelector((state) => state.auth.profile);
 
 	if (!cart) {

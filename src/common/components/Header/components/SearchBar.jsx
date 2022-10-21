@@ -1,9 +1,10 @@
 import React from "react";
+import "./_searchBar.scss";
 
 function SearchBar() {
 	return (
-		<>
-			<div className="searchInputs">
+		<div className="SearchBar">
+			<div className="SearchInputs">
 				<input type="text" placeholder="Nhập tên phim..." />
 				{filterData.length === 0 ? (
 					<SearchOutlined className="icon" />
@@ -17,9 +18,7 @@ function SearchBar() {
 						return (
 							<Link
 								key={item.maPhim}
-								to={
-									"/detail/" + item.maPhim + "/" + item.biDanh
-								}
+								to={"/detail/" + item.maPhim + "/" + item.biDanh}
 								onClick={clearInput}
 							>
 								<div className="search-content">
@@ -31,7 +30,7 @@ function SearchBar() {
 					})}
 				</div>
 			)}
-		</>
+		</div>
 	);
 }
 

@@ -28,14 +28,16 @@
 		////////
 		.option-select {
 			margin-top: 20px;
-			.option-user-info {
+			.option-content {
 				padding: 5px 0;
+				margin-bottom: 5px;
+				cursor: pointer;
+				border: 1px solid rgb(85, 143, 250);
+			}
+			.active {
+				background: rgb(85, 143, 250);
+				color: white;
 			}
 		}
 	}
-}
-
-.active {
-	background: rgb(85, 143, 250);
-	color: white;
 }

@@ -1,6 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { signInAction, fetchProfileAction, updateUserAction } from "./authAction";
+import {
+	signInAction,
+	fetchProfileAction,
+	updateUserAction,
+	destroyCourseAction,
+	courseRegisterAction,
+} from "./authAction";
 
 const initialState = {
 	profile: null,
