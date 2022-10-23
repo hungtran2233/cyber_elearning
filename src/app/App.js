@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { lazy, Suspense, useEffect } from "react";
 import { fetchProfileAction } from "features/authentication/authAction";
 import ScrollToTop from "common/utils/scrollToTop";
+import { PrivateRoute } from "./Guard";
 
 const Home = lazy(() => import("features/elearning/pages/home"));
 const Detail = lazy(() => import("features/elearning/pages/detail"));
@@ -34,8 +35,17 @@ function App() {
 						<Route path="/cart" component={Cart} exact />
 						<Route path="/signin" component={SignIn} />
 						<Route path="/signup" component={SignUp} />
-						<Route path="/payment/:id" component={Payment} exact />
-						<Route path="/profile" component={Profile} />
+						<PrivateRoute
+							path="/payment/:id"
+							component={Payment}
+							redirectPath="/signin"
+						></PrivateRoute>
+
+						<PrivateRoute
+							path="/profile"
+							component={Profile}
+							redirectPath="/signin"
+						></PrivateRoute>
 					</Switch>
 				</Suspense>
 
