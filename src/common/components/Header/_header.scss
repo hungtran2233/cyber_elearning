@@ -38,6 +38,13 @@
 		}
 	}
 
+	.home-class {
+		cursor: pointer;
+		&:hover {
+			color: #1890ff;
+		}
+	}
+
 	//====== Menu ========
 	.ant-anchor-wrapper {
 		background: none;

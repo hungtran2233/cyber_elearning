@@ -2,19 +2,19 @@ import "../App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "common/components/Header";
-import Home from "features/elearning/pages/home";
-//  import Detail from "features/elearning/pages/details";
-import Detail from "features/elearning/pages/detail";
-import SignIn from "features/authentication/SignIn";
-import SignUp from "features/authentication/SignUp";
 import Footer from "common/components/Footer";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { fetchProfileAction } from "features/authentication/authAction";
 import ScrollToTop from "common/utils/scrollToTop";
-import Cart from "features/elearning/components/Cart";
-import Profile from "features/authentication/Profile";
-import Payment from "features/elearning/pages/payment";
+
+const Home = lazy(() => import("features/elearning/pages/home"));
+const Detail = lazy(() => import("features/elearning/pages/detail"));
+const SignIn = lazy(() => import("features/authentication/SignIn"));
+const SignUp = lazy(() => import("features/authentication/SignUp"));
+const Cart = lazy(() => import("features/elearning/components/Cart"));
+const Profile = lazy(() => import("features/authentication/Profile"));
+const Payment = lazy(() => import("features/elearning/pages/payment"));
 
 function App() {
 	const dispatch = useDispatch();
@@ -27,15 +27,18 @@ function App() {
 			<Router>
 				<ScrollToTop />
 				<Header />
-				<Switch>
-					<Route path="/" component={Home} exact />
-					<Route path="/details/:id/:slug" component={Detail} exact />
-					<Route path="/cart" component={Cart} exact />
-					<Route path="/signin" component={SignIn} />
-					<Route path="/signup" component={SignUp} />
-					<Route path="/payment/:id" component={Payment} exact />
-					<Route path="/profile" component={Profile} />
-				</Switch>
+				<Suspense fallback={<div>Đang tải...</div>}>
+					<Switch>
+						<Route path="/" component={Home} exact />
+						<Route path="/details/:id/:slug" component={Detail} exact />
+						<Route path="/cart" component={Cart} exact />
+						<Route path="/signin" component={SignIn} />
+						<Route path="/signup" component={SignUp} />
+						<Route path="/payment/:id" component={Payment} exact />
+						<Route path="/profile" component={Profile} />
+					</Switch>
+				</Suspense>
+
 				<Footer />
 			</Router>
 		</div>

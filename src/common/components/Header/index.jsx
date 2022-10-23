@@ -138,13 +138,16 @@ function AppHeader() {
 
 						<div className="title">bee</div>
 					</div>
+
+					<div className="home-class" onClick={() => history.push("/")}>
+						TRANG CHỦ
+					</div>
 					<div className="mobileHidden">
 						<Anchor targetOffset="65">
-							<Link href="#banner" title="TRANG CHỦ" />
 							<Link href="#course" title="KHÓA HỌC" />
 							<Link href="#statistic" title="THỐNG KÊ" />
 							<Link href="#review" title="GÓC HỌC VIÊN" />
-							<Link href="#contact" title="LIÊN HỆ" />
+							<Link href="#Footer" title="LIÊN HỆ" />
 						</Anchor>
 					</div>
 
@@ -176,13 +179,11 @@ function AppHeader() {
 							open={visible}
 						>
 							<Anchor targetOffset="65">
-								<Link href="#hero" title="Home" />
-								<Link href="#about" title="About" />
-								<Link href="#feature" title="Features" />
-								<Link href="#works" title="How it works" />
-								<Link href="#faq" title="FAQ" />
-								<Link href="#pricing" title="Pricing" />
-								<Link href="#contact" title="Contact" />
+								<Link href="#banner" title="Về đầu trang" />
+								<Link href="#course" title="Khóa học" />
+								<Link href="#statistic" title="Thống kê" />
+								<Link href="#review" title="Góc học viên" />
+								<Link href="#Footer" title="Liên hệ" />
 							</Anchor>
 						</Drawer>
 					</div>

@@ -1,5 +1,8 @@
 import { HomeOutlined } from "@ant-design/icons";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { Spin } from "antd";
+import BackToTop from "common/components/BackToTop";
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,6 +39,7 @@ function Detail() {
 	return (
 		<div className="ELearningDetail">
 			{/* <div style={{ paddingTop: 60 }}>ranh gioi</div> */}
+			<BackToTop />
 			<BreadCrumb courseDetail={courseDetail} />
 			<BodyDetail courseDetail={courseDetail} />
 			<RelatedCourse courseDetail={courseDetail} />

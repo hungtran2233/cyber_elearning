@@ -294,7 +294,7 @@ function CourseCategory(props) {
 						</div>
 
 						{/* Pagination  */}
-						<div className="pagination-bar">
+						<div className="pagination-bar" style={{ marginTop: 30 }}>
 							<Pagination
 								defaultCurrent={1}
 								defaultPageSize={8}

@@ -10,6 +10,8 @@
 	font-size: 15px;
 	position: relative;
 
+	margin-top: 80px;
+
 	&::before {
 		content: "";
 		background-image: url("../../../assets/img/background/bg-footer/pattern2.png");
@@ -236,8 +238,8 @@
 }
 
 // responsive
-@media screen and (max-width: 576px) {
-	.footer {
+@media screen and (max-width: 768px) {
+	#Footer {
 		.footer-top {
 			padding: 10px 10px;
 			margin: 20px;
@@ -270,3 +272,38 @@
 		}
 	}
 }
+
+// @media screen and (max-width: 576px) {
+// 	#Footer {
+// 		.footer-top {
+// 			padding: 10px 10px;
+// 			margin: 20px;
+// 			flex-direction: column;
+
+// 			.text {
+// 				width: 100%;
+// 			}
+// 			.form-content {
+// 				width: 100%;
+// 			}
+// 		}
+
+// 		.footer-bottom {
+// 			flex-wrap: wrap;
+// 			padding: 20px 0;
+// 			.footer-item {
+// 				width: 40%;
+// 				margin-left: 20px;
+// 			}
+// 		}
+
+// 		.footer-copyright {
+// 			padding-left: 20px;
+// 			padding-right: 20px;
+
+// 			.footer-left {
+// 				width: 50%;
+// 			}
+// 		}
+// 	}
+// }

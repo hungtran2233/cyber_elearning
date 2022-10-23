@@ -11,6 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./_home.scss";
 import Review from "./components/Review/Review";
 import Counter from "./components/Counter/Counter";
+import BackToTop from "common/components/BackToTop";
 
 function Home() {
 	const dispatch = useDispatch();
@@ -50,11 +51,12 @@ function Home() {
 
 	return (
 		<div className="Home">
+			<BackToTop />
 			{/* <div style={{ paddingTop: 40 }}>ranh gioi</div> */}
 			<Banner allCourseList={allCourseList} />
 			<CourseCategory category={category} allCourseList={allCourseList} />
+			<Counter />
 			<Review />
-			<Counter/>
 		</div>
 	);
 }

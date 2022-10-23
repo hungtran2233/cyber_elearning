@@ -35,6 +35,7 @@ function SearchBar(props) {
 		<div className="SearchBar">
 			<div className="searchInputs">
 				<input
+					className="input-custom"
 					type="text"
 					placeholder="Nhập tên khóa học bạn muốn..."
 					onChange={handleFilter}
@@ -52,7 +53,7 @@ function SearchBar(props) {
 						return (
 							<Link
 								key={item.maKhoaHoc}
-								to={"/details/" + item.maKhoaHoc + '/' + item.biDanh }
+								to={"/details/" + item.maKhoaHoc + "/" + item.biDanh}
 								onClick={clearInput}
 							>
 								<div className="search-content">

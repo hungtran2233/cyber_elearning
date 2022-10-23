@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useState } from "react";
 import { fetchProfileAction } from "features/authentication/authAction";
+import BackToTop from "common/components/BackToTop";
 
 function Payment() {
 	const cart = useSelector((state) => state.eLearningCart);
@@ -38,6 +39,7 @@ function Payment() {
 	return (
 		<div className="Payment">
 			<div className="container">
+				<BackToTop />
 				<Row>
 					<Col xs={24} sm={24} md={16} lg={16} xl={16}>
 						<CourseDetail cart={cart} />

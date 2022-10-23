@@ -1,153 +1,152 @@
-.review{
-  margin-bottom: 50px;
-    margin-top: 160px;
-    background-color: #f6f7fc;
-    background-repeat: no-repeat;
-    background-position: center center;
-    .ant-tabs-top {
-        align-items: center;
-        
-        flex-direction: row-reverse;
-        max-width: 115.2rem;
-        padding: auto 3.2rem;
-        margin: 0 auto;
-        .ant-tabs-nav {
-           
-          height: 600px;
-          width: 50%;
-          justify-content: center;
-          .ant-tabs-nav-wrap {
-            .ant-tabs-nav-list {
-              z-index: 3;
-              height: 80%;
-              flex-wrap: wrap;
-              justify-content: center;
-              .ant-tabs-tab {
-                z-index: 3;
-                .ant-tabs-tab-btn {
-                  z-index: 1000;
-                  border-radius: 10px;
-                  overflow: hidden;
-                  position: relative;
-                  &::after {
-                    z-index: 3;
-                    content: "";
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: hsla(0deg, 0%, 100%, 0.5);
-                    border-radius: 6px;
-                    position: absolute;
-                    transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-                    opacity: 1;
-                  }
-                  .image {
-                    z-index: 10000;
-                    border-radius: 10px;
-                    width: 100%;
-                    object-fit: cover;
-                    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
-                  }
-                }
-              }
-            }
-          }
-        }
-        .ant-tabs-content-holder {
-            padding: 0 10px;
-          .ant-tabs-content {
-            .ant-tabs-tabpane {
-               
-              font-size: 20px;
-              line-height: 48px;
-              color: #18181b;
-              font-weight: 500;
-              margin-bottom: 30px;
-              margin-top: -16px;
-              position: relative;
-              z-index: 2;
-            }
-          }
-        }
-      }
+.review {
+	margin-bottom: 50px;
+	margin-top: 160px;
+	background-color: #f6f7fc;
+	background-repeat: no-repeat;
+	background-position: center center;
+	.ant-tabs-top {
+		align-items: center;
+
+		flex-direction: row-reverse;
+		max-width: 115.2rem;
+		padding: auto 3.2rem;
+		margin: 0 auto;
+		.ant-tabs-nav {
+			height: 600px;
+			width: 50%;
+			justify-content: center;
+			.ant-tabs-nav-wrap {
+				.ant-tabs-nav-list {
+					z-index: 3;
+					height: 80%;
+					flex-wrap: wrap;
+					justify-content: center;
+					.ant-tabs-tab {
+						z-index: 3;
+						.ant-tabs-tab-btn {
+							z-index: 1000;
+							border-radius: 10px;
+							overflow: hidden;
+							position: relative;
+							&::after {
+								z-index: 3;
+								content: "";
+								top: 0;
+								left: 0;
+								width: 100%;
+								height: 100%;
+								background-color: hsla(0deg, 0%, 100%, 0.5);
+								border-radius: 6px;
+								position: absolute;
+								transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+								opacity: 1;
+							}
+							.image {
+								z-index: 10000;
+								border-radius: 10px;
+								width: 100%;
+								object-fit: cover;
+								transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1)
+									0s;
+							}
+						}
+					}
+				}
+			}
+		}
+		.ant-tabs-content-holder {
+			padding: 0 10px;
+			.ant-tabs-content {
+				.ant-tabs-tabpane {
+					font-size: 20px;
+					line-height: 48px;
+					color: #18181b;
+					font-weight: 500;
+					margin-bottom: 30px;
+					margin-top: -16px;
+					position: relative;
+					z-index: 2;
+				}
+			}
+		}
+	}
 }
 
 .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn::after {
-  opacity: 0 !important;
+	opacity: 0 !important;
 }
 .ant-tabs-tab.ant-tabs-tab-active .image {
-  transform: scale(1.1);
+	transform: scale(1.1);
 }
 .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-  transform: scale(1.1);
+	transform: scale(1.1);
 }
 .ant-tabs-ink-bar.ant-tabs-ink-bar-animated {
-  display: none;
+	display: none;
 }
 .swiper {
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 .swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
 
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
 }
 
 .swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
-.swiperResponsive{
-  height: 200px;
-  display: none;
-  .coverResponsive{
-    height: 380px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 50px;
-    .imageResponsve{
-
-      .imgReponsive{
-        border-radius: 50%;
-      }
-    }
-  }
+.swiperResponsive {
+	height: 200px;
+	display: none;
+	.coverResponsive {
+		height: 380px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: 50px;
+		.imageResponsve {
+			.imgReponsive {
+				border-radius: 50%;
+			}
+		}
+	}
 }
-@media only screen and (max-width: 576px){
-  .swiperResponsive{
-    .coverResponsive{
-      height: 450px;
-    }
-  }
- 
+@media only screen and (max-width: 576px) {
+	.review {
+	}
+	.swiperResponsive {
+		.coverResponsive {
+			height: 450px;
+		}
+	}
 }
 
 @media only screen and (max-width: 992px) {
-	.tabResponsive{
-    display: none;
-  }
-  .swiperResponsive{
-    display: block;
-  }
+	.tabResponsive {
+		display: none;
+	}
+	.swiperResponsive {
+		display: block;
+	}
 }
