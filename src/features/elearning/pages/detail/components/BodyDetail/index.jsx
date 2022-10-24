@@ -4,14 +4,32 @@ import React from "react";
 import { Tabs } from "antd";
 import "./_bodyDetail.scss";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../../utils/cartSlice";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import { Button, message, Space } from "antd";
+import { fetchProfileAction } from "features/authentication/authAction";
+import { useEffect } from "react";
 
 function BodyDetail(props) {
 	const dispatch = useDispatch();
 	const history = useHistory();
+	const [registerCourseList, setRegisterCourseList] = useState(null);
+	const token = localStorage.getItem("token");
+	// const [isRegister, setIsRegister] = useState(false);
+
+	const fetchProfile = async () => {
+		if (token === null) {
+			return;
+		} else {
+			const data = await dispatch(fetchProfileAction());
+			setRegisterCourseList(data.payload.chiTietKhoaHocGhiDanh);
+		}
+	};
+
+	useEffect(() => {
+		fetchProfile();
+	}, []);
 
 	const {
 		maKhoaHoc,
@@ -24,7 +42,64 @@ function BodyDetail(props) {
 		nguoiTao,
 		danhMucKhoaHoc,
 	} = props.courseDetail;
-	// console.log(props.courseDetail);
+
+	// render button add to card when login
+
+	const renderButtonAddToCart = (token) => {
+		if (token !== null) {
+			const course = registerCourseList?.find(
+				(item) => item.maKhoaHoc === maKhoaHoc
+			);
+			if (!course) {
+				return (
+					<div className="cart-content">
+						<div
+							className="add-to-cart"
+							onClick={() => {
+								history.push("/cart");
+								handleAddToCart();
+								success();
+							}}
+						>
+							<i className="fa-solid fa-cart-plus"></i>
+							Thêm vào giỏ hàng
+						</div>
+						<div className="note">
+							Vui lòng vào giỏ hàng để tiến hành đăng kí khóa học !
+						</div>
+					</div>
+				);
+			} else {
+				return (
+					<div className="cart-content">
+						<div className="btn-disable">Bạn đã đăng ký khóa học này</div>
+						<div className="note">
+							Vui lòng vào thông tin cá nhân để kiểm tra lại !
+						</div>
+					</div>
+				);
+			}
+		} else {
+			return (
+				<div className="cart-content">
+					<div
+						className="add-to-cart"
+						onClick={() => {
+							history.push("/cart");
+							handleAddToCart();
+							success();
+						}}
+					>
+						<i className="fa-solid fa-cart-plus"></i>
+						Thêm vào giỏ hàng
+					</div>
+					<div className="note">
+						Vui lòng vào giỏ hàng để tiến hành đăng kí khóa học !
+					</div>
+				</div>
+			);
+		}
+	};
 
 	// cart
 	const handleAddToCart = () => {
@@ -109,29 +184,9 @@ function BodyDetail(props) {
 						</div>
 					</Col>
 
+					{/* Render button add to cart  */}
 					<Col xs={24} sm={24} md={8} lg={8} xl={8}>
-						<div className="cart-content">
-							{/* <div
-								className="register-now"
-								onClick={() => history.push("/payment")}
-							>
-								ĐĂNG KÝ NGAY
-							</div> */}
-							<div
-								className="add-to-cart"
-								onClick={() => {
-									history.push("/cart");
-									handleAddToCart();
-									success();
-								}}
-							>
-								<i className="fa-solid fa-cart-plus"></i>
-								Thêm vào giỏ hàng
-							</div>
-							<div className="note">
-								Vui lòng vào giỏ hàng để tiến hành đăng kí khóa học !
-							</div>
-						</div>
+						{renderButtonAddToCart(token)}
 					</Col>
 				</Row>
 

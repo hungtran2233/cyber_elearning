@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	addToCart,
@@ -11,22 +11,66 @@ import {
 import { Link, useHistory } from "react-router-dom";
 import "./_cart.scss";
 import { price } from "features/elearning/utils/tempPrice";
+import { fetchProfileAction } from "features/authentication/authAction";
 
 const Cart = () => {
 	const cart = useSelector((state) => state.eLearningCart);
 	const dispatch = useDispatch();
 	const history = useHistory();
 
+	// check course isRegister when login or logout
+	const [registerCourseList, setRegisterCourseList] = useState(null);
+	const fetchProfile = async () => {
+		if (token === null) {
+			return;
+		} else {
+			const data = await dispatch(fetchProfileAction());
+			setRegisterCourseList(data.payload.chiTietKhoaHocGhiDanh);
+		}
+	};
+
 	useEffect(() => {
 		dispatch(getTotals());
+		fetchProfile();
 	}, [cart, dispatch]);
 
-	const handleAddToCart = (product) => {
-		dispatch(addToCart(product));
+	// check token
+	const token = localStorage.getItem("token");
+
+	// render button register
+	const renderButtonRegister = (token, courseDetail) => {
+		if (token !== null) {
+			const findCourse = registerCourseList?.find(
+				(item) => item.maKhoaHoc === courseDetail.maKhoaHoc
+			);
+			if (!findCourse) {
+				return (
+					<div
+						className="btn-register"
+						onClick={() => {
+							history.push("/payment/" + courseDetail.maKhoaHoc);
+						}}
+					>
+						Đăng ký
+					</div>
+				);
+			} else {
+				return <div className="btn-register-true">Đã đăng ký rồi</div>;
+			}
+		} else {
+			return (
+				<div
+					className="btn-register"
+					onClick={() => {
+						history.push("/payment/" + courseDetail.maKhoaHoc);
+					}}
+				>
+					Đăng ký
+				</div>
+			);
+		}
 	};
-	const handleDecreaseCart = (product) => {
-		dispatch(decreaseCart(product));
-	};
+
 	const handleRemoveFromCart = (product) => {
 		dispatch(removeFromCart(product));
 	};
@@ -71,20 +115,20 @@ const Cart = () => {
 						</div>
 						<div className="cart-items">
 							{cart.cartItems &&
-								cart.cartItems?.map((cartItem, index) => (
+								cart.cartItems?.map((courseDetail, index) => (
 									<div className="cart-item" key={index}>
 										<div className="cart-product">
 											<img
-												src={cartItem.hinhAnh}
-												alt={cartItem.tenKhoaHoc}
+												src={courseDetail.hinhAnh}
+												alt={courseDetail.tenKhoaHoc}
 											/>
 											<div>
-												<h3>{cartItem.tenKhoaHoc}</h3>
-												<p>{cartItem.desc}</p>
+												<h3>{courseDetail.tenKhoaHoc}</h3>
+												<p>{courseDetail.desc}</p>
 												<button
 													className="btn-remove"
 													onClick={() =>
-														handleRemoveFromCart(cartItem)
+														handleRemoveFromCart(courseDetail)
 													}
 												>
 													Xóa
@@ -93,18 +137,11 @@ const Cart = () => {
 										</div>
 										<div className="cart-product-price">${price}</div>
 										<div className="course-date">
-											{cartItem.ngayTao}
+											{courseDetail.ngayTao}
 										</div>
-										<div
-											className="btn-register"
-											onClick={() => {
-												history.push(
-													"/payment/" + cartItem.maKhoaHoc
-												);
-											}}
-										>
-											Đăng ký
-										</div>
+
+										{/* Render button register  */}
+										{renderButtonRegister(token, courseDetail)}
 									</div>
 								))}
 						</div>

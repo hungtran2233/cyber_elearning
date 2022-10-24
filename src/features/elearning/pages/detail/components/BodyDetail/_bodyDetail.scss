@@ -66,6 +66,19 @@
 			text-align: center;
 			font-size: 14px;
 		}
+
+		.btn-disable {
+			border: 1px solid blue;
+			color: blue;
+			border-radius: 5px;
+			padding: 10px 20px;
+			display: inline-block;
+			width: 100%;
+			font-size: 18px;
+			font-weight: bold;
+			text-align: center;
+			cursor: pointer;
+		}
 	}
 
 	//// row -> description

@@ -107,6 +107,19 @@
 			opacity: 0.8;
 		}
 	}
+
+	.btn-register-true {
+		text-align: center;
+		padding: 5px 0;
+		border: 1px solid #4b70e2;
+		color: #4b70e2;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: all 0.5s;
+		&:hover {
+			opacity: 0.8;
+		}
+	}
 }
 
 /* cart summary */
