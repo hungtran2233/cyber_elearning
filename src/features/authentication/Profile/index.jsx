@@ -16,6 +16,7 @@ import { useHistory } from "react-router-dom";
 import ShowUserInfo from "./components/ShowUserInfo";
 import CourseInfo from "./components/CourseInfo";
 import { fetchProfileAction } from "../authAction";
+import BackToTop from "common/components/BackToTop";
 
 function Profile() {
 	const dispatch = useDispatch();
@@ -68,6 +69,7 @@ function Profile() {
 
 	return (
 		<div className="Profile">
+			<BackToTop />
 			<div className="container">
 				<div className="content-info">
 					<Row>

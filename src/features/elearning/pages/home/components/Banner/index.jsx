@@ -4,6 +4,7 @@ import Typewriter from "typewriter-effect";
 import SearchBar from "./components/SearchBar";
 import Lottie from "lottie-react";
 import downArrow from "assets/animation/98428-arrow-down-purple/data.json";
+import { Link } from "react-scroll";
 
 function Banner(props) {
 	// console.log(props.allCourseList);
@@ -39,11 +40,13 @@ function Banner(props) {
 
 					{/* Animation arrow down  */}
 
-					<Lottie
-						className="down-arrow"
-						animationData={downArrow}
-						loop={true}
-					/>
+					<Link to="course">
+						<Lottie
+							className="down-arrow"
+							animationData={downArrow}
+							loop={true}
+						/>
+					</Link>
 				</div>
 			</div>
 		</div>

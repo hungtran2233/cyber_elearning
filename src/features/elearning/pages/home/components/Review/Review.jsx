@@ -17,7 +17,7 @@ const Review = () => {
 		{
 			id: 1,
 			content:
-				"RẤT CÔ ĐỌNG, DỄ HIỂU, RÕ RÀNG, CHẤT LƯỢNG CAO, ĐÁP ỨNG CỰC TỐT NHU CẦU CỦA NHỮNG NHÀ GIAO DỊCH CẦN CÓ NỀN TẢNG KIẾN THỨC ĐÚNG VÀ VỮNG. RẤT CảM ƠN. SAU BAO NHIÊU KHOÁ HỌC THÌ ĐÂY LÀ KHOÁ HỌC MÀ BẢN THÂN TÔI HÀI LÒNG NHẤT. TÔI ĐÃ HIỂU RỎ VỀ NẾN SAU KHOÁ HỌC NÀY KHÔNG CÒN MƠ HỒ NHƯ CÁC KHOÁ HỌC TRƯỚC ĐÂY NỮA.",
+				"Giảng viên nhiệt tình, hướng dẫn cặn kẽ, giúp tôi có được một nền tảng khá vững chắc. Hiện tại mình vừa giao dịch hàng ngày, vừa xem đi xem lại các bài liên quan đến tình huống thực tế thị trường mình đang gặp, thấy rất hữu ích. Mình đã tham gia vài khoá học của cô Jennifer Trần trên kyna và mong cô sẽ mở thêm các khoá học khác trong tương lai (ví dụ như hướng dẫn phân tích cơ bản)",
 			name: "Huy Phong",
 			image: reivew1,
 		},
@@ -37,7 +37,8 @@ const Review = () => {
 		},
 		{
 			id: 4,
-			content: "Bài giảng hay và giảng viên am hiểu tuyển dụng việc làm .",
+			content:
+				"Bài giảng hay và giảng viên am hiểu tuyển dụng việc làm, Hiện tại mình vừa giao dịch hàng ngày, vừa xem đi xem lại các bài liên quan đến tình huống thực tế thị trường mình đang gặp, thấy rất hữu ích. Mình đã tham gia vài khoá học của cô Jennifer Trần trên kyna và mong cô sẽ mở thêm các khoá học khác trong tương lai (ví dụ như hướng dẫn phân tích cơ bản)",
 			name: "Thanh Tâm",
 			image: reivew4,
 		},
@@ -87,7 +88,7 @@ const Review = () => {
 							key: item.id,
 							children: (
 								<div>
-									<strong style={{ textTransform: "uppercase" }}>
+									<strong>
 										<i
 											style={{
 												marginRight: 5,
@@ -134,7 +135,7 @@ const Review = () => {
 							<SwiperSlide className="swiperResponsive" key={item.id}>
 								<div className="coverResponsive container">
 									<div className="contentResponsve">
-										<strong style={{ textTransform: "uppercase" }}>
+										<strong>
 											<i className="fas fa-quote-left" />{" "}
 											{item.content}{" "}
 											<i className="fas fa-quote-right" />

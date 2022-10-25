@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Anchor, Drawer, Button, Menu, Dropdown, Space } from "antd";
+import React, { Suspense, useEffect, useState } from "react";
+import { Anchor, Drawer, Button, Menu, Dropdown, Space, Select } from "antd";
 import { Header } from "antd/lib/layout/layout";
 import mainLogo from "assets/img/icon/logo-bee.png";
 import enFlag from "assets/img/icon/en-flag.png";
+import viFlag from "assets/img/icon/vi-flag.png";
 import user1 from "assets/img/user/pic2_3.jpg";
 import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,13 +11,46 @@ import { DownOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons";
 import { formatFullName, formatName, upperCaseFirst } from "common/utils/formatFullName";
 import Swal from "sweetalert2";
 import { fetchProfileAction } from "features/authentication/authAction";
+import { initReactI18next, useTranslation } from "react-i18next";
+import i18n from "i18n";
 
+const { Option } = Select;
 const { Link } = Anchor;
+
+// change language
+const translationVi = {
+	home: "TRANG CHỦ",
+	course: "KHÓA HỌC",
+	statistic: "THỐNG KÊ",
+	review: "GÓC HỌC VIÊN",
+	contact: "LIÊN HỆ",
+	signIn: "Đăng Nhập",
+};
+const translationEn = {
+	home: "HOME",
+	course: "COURSE",
+	statistic: "STATISTIC",
+	review: "REVIEW",
+	contact: "CONTACT",
+	signIn: "Sign In",
+};
+
+i18n.use(initReactI18next).init({
+	resources: {
+		vi: { translation: translationVi },
+		en: { translation: translationEn },
+	},
+	lng: "vi",
+	fallbackLng: "vi",
+	interpolation: { escapeValue: false },
+});
 
 function AppHeader() {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const arrItem = useSelector((state) => state.eLearningCart.cartItems);
+	// language
+	const { t } = useTranslation();
 
 	// console.log(cartTotalQuantity);
 
@@ -115,10 +149,16 @@ function AppHeader() {
 			return (
 				<div className="btn-login" onClick={() => history.push("/signin")}>
 					<i className="fas fa-user"></i>
-					<span>Đăng nhập</span>
+					<span>{t("signIn")}</span>
 				</div>
 			);
 		}
+	};
+
+	// language
+	const handleChange = (e) => {
+		i18n.changeLanguage(e);
+		// console.log(value);
 	};
 
 	return (
@@ -140,23 +180,30 @@ function AppHeader() {
 					</div>
 
 					<div className="home-class" onClick={() => history.push("/")}>
-						TRANG CHỦ
+						{/* Trang chủ  */}
+						{t("home")}
 					</div>
 					<div className="mobileHidden">
 						<Anchor targetOffset="65">
-							<Link href="#course" title="KHÓA HỌC" />
-							<Link href="#statistic" title="THỐNG KÊ" />
-							<Link href="#review" title="GÓC HỌC VIÊN" />
-							<Link href="#Footer" title="LIÊN HỆ" />
+							<Link href="#course" title={t("course")} />
+							<Link href="#statistic" title={t("statistic")} />
+							<Link href="#review" title={t("review")} />
+							<Link href="#Footer" title={t("contact")} />
 						</Anchor>
 					</div>
 
 					<div className="right-menu">
 						<div className="language">
-							<div className="icon">
-								<img src={enFlag} alt="" />
-							</div>
-							<div className="country">English</div>
+							<Select
+								defaultValue="vi"
+								style={{
+									width: 65,
+								}}
+								onChange={handleChange}
+							>
+								<Option value="vi">VI</Option>
+								<Option value="en">EN</Option>
+							</Select>
 						</div>
 
 						<div className="cart" onClick={() => history.push("/cart")}>
@@ -179,11 +226,11 @@ function AppHeader() {
 							open={visible}
 						>
 							<Anchor targetOffset="65">
-								<Link href="#banner" title="Về đầu trang" />
-								<Link href="#course" title="Khóa học" />
-								<Link href="#statistic" title="Thống kê" />
-								<Link href="#review" title="Góc học viên" />
-								<Link href="#Footer" title="Liên hệ" />
+								<Link href="#banner" title="HOME" />
+								<Link href="#course" title={t("course")} />
+								<Link href="#statistic" title={t("statistic")} />
+								<Link href="#review" title={t("review")} />
+								<Link href="#Footer" title={t("contact")} />
 							</Anchor>
 						</Drawer>
 					</div>

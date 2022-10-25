@@ -11,6 +11,7 @@ import BodyDetail from "./components/BodyDetail";
 import BreadCrumb from "./components/BreadCrumb";
 import RelatedCourse from "./components/RelatedCourse";
 import { fetchCourseDetailAction } from "./utils/detailAction";
+import UserComment from "./components/UserComment";
 
 function Detail() {
 	const match = useRouteMatch();
@@ -42,6 +43,7 @@ function Detail() {
 			<BackToTop />
 			<BreadCrumb courseDetail={courseDetail} />
 			<BodyDetail courseDetail={courseDetail} />
+			<UserComment />
 			<RelatedCourse courseDetail={courseDetail} />
 		</div>
 	);
