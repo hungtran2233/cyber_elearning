@@ -73,7 +73,7 @@ function Profile() {
 			<div className="container">
 				<div className="content-info">
 					<Row>
-						<Col xs={4} sm={4} md={6} lg={6} xl={6}>
+						<Col xs={24} sm={24} md={6} lg={6} xl={6}>
 							<div className="left-content">
 								<div className="user">
 									<div className="image">
@@ -112,7 +112,7 @@ function Profile() {
 								</div>
 							</div>
 						</Col>
-						<Col xs={20} sm={20} md={18} lg={18} xl={18}>
+						<Col xs={24} sm={24} md={18} lg={18} xl={18}>
 							{renderContent()}
 						</Col>
 					</Row>

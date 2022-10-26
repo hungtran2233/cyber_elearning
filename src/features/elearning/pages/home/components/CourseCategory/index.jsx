@@ -234,7 +234,7 @@ function CourseCategory(props) {
 				{/* Display  */}
 				<Row>
 					{/* Category  */}
-					<Col xs={8} sm={8} md={4} lg={4} xl={4}>
+					<Col xs={24} sm={24} md={4} lg={4} xl={4}>
 						<div className="category-list">
 							<div className={"card-content" + " " + toggleActive(100)}>
 								<div
@@ -277,7 +277,7 @@ function CourseCategory(props) {
 					</Col>
 
 					{/* Course  */}
-					<Col xs={16} sm={16} md={20} lg={20} xl={20}>
+					<Col xs={24} sm={24} md={20} lg={20} xl={20}>
 						<div className="course-list">
 							{selectedCourseList
 								.slice(minValue, maxValue)

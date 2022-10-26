@@ -84,15 +84,27 @@
 @media only screen and (max-width: 576px) {
 	.CourseCategory {
 		padding: 20px 20px;
+
+		.category-list {
+			.card-content {
+				.card-custom {
+					padding: 3px;
+				}
+			}
+		}
+
 		.course-list {
 			height: 420px;
 			overflow-y: auto;
+			margin-top: 20px;
 			.item-content {
 				width: 100%;
 				margin-bottom: 5px;
+				padding: 0;
 				.card-content {
 					display: flex;
 					align-items: center;
+
 					.label-box {
 						display: none;
 					}

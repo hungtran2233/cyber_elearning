@@ -41,3 +41,20 @@
 		}
 	}
 }
+
+@media only screen and (max-width: 576px) {
+	.Profile {
+		.left-content {
+			margin: 10px;
+
+			.user {
+				.image {
+					img {
+						width: 50%;
+						height: 50%;
+					}
+				}
+			}
+		}
+	}
+}

@@ -37,7 +37,7 @@ function SearchBar(props) {
 				<input
 					className="input-custom"
 					type="text"
-					placeholder="Nhập tên khóa học bạn muốn..."
+					placeholder="Nhập tên khóa học..."
 					onChange={handleFilter}
 					value={wordEntered}
 				/>

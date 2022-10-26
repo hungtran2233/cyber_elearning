@@ -246,6 +246,12 @@
 @media only screen and (max-width: 576px) {
 	.ant-layout-header {
 		.header-master {
+			.logo-box {
+				.title {
+					display: none;
+				}
+			}
+
 			.home-class {
 				display: none;
 			}

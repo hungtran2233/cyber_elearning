@@ -58,12 +58,20 @@
 
 @media only screen and (max-width: 576px) {
 	.Banner {
-		height: 500px;
+		height: 480px;
 
 		.content {
 			padding: 0 10px;
 			.title {
 				font-size: 30px;
+			}
+
+			.description {
+				font-size: 12px;
+			}
+
+			.down-arrow {
+				top: 130%;
 			}
 		}
 	}

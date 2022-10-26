@@ -43,3 +43,28 @@
 		}
 	}
 }
+
+@media only screen and (max-width: 576px) {
+	.CourseInfo {
+		margin: 0;
+		.course-item {
+			flex-wrap: wrap;
+
+			.course-img {
+				width: 30%;
+			}
+
+			.description {
+				width: 70%;
+			}
+			.show-detail {
+				width: 50%;
+				text-align: left;
+			}
+			.destroy-course {
+				width: 50%;
+				text-align: left;
+			}
+		}
+	}
+}
